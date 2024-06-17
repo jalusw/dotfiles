@@ -2,8 +2,7 @@
 opacity   = 0.75
 
 [font]
+family    = "RecMonoCasual Nerd Font Propo"
 size      = 12.0
-
-[font.normal]
-family    = "MonoLisa Nerd Font Mono"
 style     = "Regular"
+

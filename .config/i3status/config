@@ -3,10 +3,10 @@ general {
   interval  = 5
 }
 
-order += "disk /"
-order += "memory"
-order += "load"
-order += "battery all"
+#order += "disk /"
+#order += "memory"
+#order += "load"
+#order += "battery all"
 order += "tztime local"
 
 disk "/" {
