@@ -1,0 +1,33 @@
+general {
+  colors    = true
+  interval  = 5
+}
+
+order += "disk /"
+order += "memory"
+order += "load"
+order += "battery all"
+order += "tztime local"
+
+disk "/" {
+  format = "%avail"
+}
+
+memory {
+  format = "%used"
+  threshold_degraded = "10%"
+  format_degraded = "MEMORY: %free"
+}
+
+battery all {
+  format = "%percentage %remaining"
+}
+
+load {
+  format = "%5min"
+}
+
+tztime local {
+  format = "%Y-%m-%d %H:%M:%S %Z"
+  timezone = "Asia/Makassar"
+}
