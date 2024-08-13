@@ -16,6 +16,13 @@ Pre-requisites:
 - `ripgrep`
 - `fd`
 
+On Ubuntu 
+
+```
+sudo apt update && sudo apt upgrade -y
+sudo apt install stow git zsh tmux vim fzf ripgrep fd-find kitty build-essential
+```
+
 To install the dotfiles, clone the repository and use `stow` to create the
 
 ```bash
