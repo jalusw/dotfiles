@@ -16,6 +16,8 @@ Pre-requisites:
 - `ripgrep`
 - `fd`
 
+Font : [`FiraCode Nerd Font`](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode)
+
 On Ubuntu 
 
 ```
