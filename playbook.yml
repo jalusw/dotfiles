@@ -1,0 +1,29 @@
+---
+- name: Provision Workspace
+  hosts: all
+  become: yes
+  tasks:
+    - name: Update apt package index
+      apt:
+        update_cache: yes
+    - name: Install curl
+      apt:
+        name: curl
+        state: present
+    - name: Install essential utilities
+      apt:
+        name:
+          - stow
+          - git
+          - zsh
+          - tmux
+          - vim
+          - fzf
+          - ripgrep
+          - fd-find
+          - kitty
+          - build-essential
+          - i3
+          - i3status
+        state: present
+        update_cache: yes
