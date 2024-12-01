@@ -25,5 +25,8 @@
           - build-essential
           - i3
           - i3status
+          - nodejs
+          - npm
+
         state: present
         update_cache: yes
