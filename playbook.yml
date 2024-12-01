@@ -1,6 +1,6 @@
 ---
 - name: Provision Workspace
-  hosts: all
+  hosts: localhost
   become: yes
   tasks:
     - name: Update apt package index
@@ -27,6 +27,7 @@
           - i3status
           - nodejs
           - npm
-
         state: present
         update_cache: yes
+    - name: stow
+      ansible.builtin.shell: stow .
