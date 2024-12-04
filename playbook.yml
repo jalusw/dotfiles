@@ -1,7 +1,6 @@
 ---
-- name: Provision Workspace
+- name: jalusw
   hosts: localhost
-  become: yes
   tasks:
     - name: Update apt package index
       apt:
@@ -27,7 +26,18 @@
           - i3status
           - nodejs
           - npm
+          - software-properties-common
         state: present
         update_cache: yes
     - name: stow
       ansible.builtin.shell: stow .
+    - name: install oh my zsh
+      ansible.builtin.shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    - name: add neovim apt repository
+      ansible.builtin.apt_repository:
+        repo: ppa:neovim-ppa/unstable
+    - name: install neovim
+      apt:
+        name: neovim
+    - name: install latest nodejs
+      ansible.builtin.shell: npm i -g n && n lts

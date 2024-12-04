@@ -1,7 +1,5 @@
-sudo apt update && sudo apt upgrade -y
-sudo apt update
-sudo apt install software-properties-common
-sudo add-apt-repository --yes --update ppa:ansible/ansible
-sudo apt install ansible
-
-ansible-playbook playbook.yml
+apt update && sudo apt upgrade -y
+apt update
+apt install software-properties-common
+add-apt-repository --yes --update ppa:ansible/ansible
+apt install ansible
