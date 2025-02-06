@@ -1,6 +1,7 @@
-syntax on                     " Enable syntax highlighting
+syntax on
 
 set nocompatible              
+set noswapfile
 set backspace=indent,eol,start  
 set relativenumber
 set hlsearch                  
@@ -11,9 +12,4 @@ set tabstop=2
 set shiftwidth=2              
 set expandtab                 
 set autoindent                
-set mouse=a                   
-set laststatus=2              
-set wrap                      
 set linebreak                 
-set cursorline                
-
