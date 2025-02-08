@@ -103,5 +103,6 @@ source $ZSH/oh-my-zsh.sh
 export PATH="$PATH:/opt/nvim-linux64/bin"
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+export PATH=$PATH:/usr/local/go/bin
 
 alias ff="find . | fzf"
