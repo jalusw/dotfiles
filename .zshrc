@@ -106,3 +106,6 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 export PATH=$PATH:/usr/local/go/bin
 
 alias ff="find . | fzf"
+
+alias txs="tmux kill-server"
+alias txa="tmux attach -t "
