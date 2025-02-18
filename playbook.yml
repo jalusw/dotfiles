@@ -27,6 +27,8 @@
           - nodejs
           - npm
           - software-properties-common
+          - xbacklight
+          - dunst
         state: present
         update_cache: yes
     - name: stow

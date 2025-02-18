@@ -100,12 +100,18 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias ff="find . | fzf"
+alias clip="xclip -selection clipboard"
+
+alias txs="tmux kill-server"
+alias txa="tmux attach -t "
+alias txl="tmux list-sessions"
+
 export PATH="$PATH:/opt/nvim-linux64/bin"
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 export PATH=$PATH:/usr/local/go/bin
-
-alias ff="find . | fzf"
-
-alias txs="tmux kill-server"
-alias txa="tmux attach -t "
+export PATH="$HOME/.local/bin:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
