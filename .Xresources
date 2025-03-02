@@ -1,0 +1,50 @@
+! Set DPI for high-resolution displays
+Xft.dpi: 150
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.hintstyle: hintfull
+
+! Terminal colors (example: Gruvbox Dark theme)
+! Black + Bright Black
+*.color0:  #282828
+*.color8:  #928374
+! Red + Bright Red
+*.color1:  #cc241d
+*.color9:  #fb4934
+! Green + Bright Green
+*.color2:  #98971a
+*.color10: #b8bb26
+! Yellow + Bright Yellow
+*.color3:  #d79921
+*.color11: #fabd2f
+! Blue + Bright Blue
+*.color4:  #458588
+*.color12: #83a598
+! Magenta + Bright Magenta
+*.color5:  #b16286
+*.color13: #d3869b
+! Cyan + Bright Cyan
+*.color6:  #689d6a
+*.color14: #8ec07c
+! White + Bright White
+*.color7:  #a89984
+*.color15: #ebdbb2
+
+! Set default font for terminal (example: JetBrains Mono)
+URxvt*font: xft:JetBrainsMono:size=10
+URxvt*boldFont: xft:JetBrainsMono-Bold:size=10
+URxvt*italicFont: xft:JetBrainsMono-Italic:size=10
+URxvt*boldItalicFont: xft:JetBrainsMono-BoldItalic:size=10
+
+! Enable transparency in URxvt
+URxvt*depth: 32
+URxvt*background: rgba:0000/0000/0000/cc00  ! Adjust transparency level
+
+! Scrollback buffer
+URxvt*saveLines: 10000
+URxvt*scrollBar: false
+
+! Cursor settings
+URxvt*cursorBlink: true
+URxvt*cursorColor: #ebdbb2
