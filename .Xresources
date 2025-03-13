@@ -1,5 +1,5 @@
 ! Set DPI for high-resolution displays
-Xft.dpi: 150
+Xft.dpi: 100
 Xft.antialias: true
 Xft.hinting: true
 Xft.rgba: rgb
@@ -36,15 +36,3 @@ URxvt*font: xft:JetBrainsMono:size=10
 URxvt*boldFont: xft:JetBrainsMono-Bold:size=10
 URxvt*italicFont: xft:JetBrainsMono-Italic:size=10
 URxvt*boldItalicFont: xft:JetBrainsMono-BoldItalic:size=10
-
-! Enable transparency in URxvt
-URxvt*depth: 32
-URxvt*background: rgba:0000/0000/0000/cc00  ! Adjust transparency level
-
-! Scrollback buffer
-URxvt*saveLines: 10000
-URxvt*scrollBar: false
-
-! Cursor settings
-URxvt*cursorBlink: true
-URxvt*cursorColor: #ebdbb2
