@@ -1,0 +1,131 @@
+---
+- name: Setup Development Environment on Pop!_OS 22.04
+  hosts: localhost
+  become: yes
+  tasks:
+
+    - name: Update and upgrade system
+      apt:
+        update_cache: yes
+        upgrade: dist
+        cache_valid_time: 3600
+
+    - name: Install basic tools
+      apt:
+        name:
+          - git
+          - curl
+          - wget
+          - unzip
+          - build-essential
+          - software-properties-common
+          - ca-certificates
+          - gnupg
+          - lsb-release
+        state: present
+
+    # --- Install Docker ---
+    - name: Add Docker GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker repository
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable
+        state: present
+        filename: docker
+
+    - name: Install Docker and Docker Compose
+      apt:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
+        state: latest
+        update_cache: yes
+
+    - name: Add current user to docker group
+      user:
+        name: "{{ ansible_user_id }}"
+        groups: docker
+        append: yes
+
+    # --- Install Node.js (Latest LTS) using NodeSource ---
+    - name: Add NodeSource GPG key
+      apt_key:
+        url: https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key
+        state: present
+
+    - name: Add NodeSource LTS repo
+      apt_repository:
+        repo: deb https://deb.nodesource.com/node_20.x nodistro main
+        state: present
+        filename: nodesource
+
+    - name: Install Node.js
+      apt:
+        name: nodejs
+        state: latest
+        update_cache: yes
+
+    # --- Install Go (latest from official tar.gz) ---
+    - name: Get latest Go version tag
+      shell: |
+        curl -s https://go.dev/VERSION?m=text
+      register: go_version_raw
+
+    - name: Set Go version fact
+      set_fact:
+        go_version: "{{ go_version_raw.stdout }}"
+
+    - name: Download Go {{ go_version }}
+      get_url:
+        url: "https://go.dev/dl/{{ go_version }}.linux-amd64.tar.gz"
+        dest: "/tmp/go.tar.gz"
+        mode: '0644'
+
+    - name: Remove any existing Go installation
+      file:
+        path: /usr/local/go
+        state: absent
+
+    - name: Extract Go
+      unarchive:
+        src: /tmp/go.tar.gz
+        dest: /usr/local
+        remote_src: yes
+
+    - name: Set Go PATH
+      copy:
+        dest: /etc/profile.d/go.sh
+        content: |
+          export PATH=$PATH:/usr/local/go/bin
+        mode: '0755'
+
+    # --- Install Latest Neovim (AppImage from GitHub) ---
+    - name: Get latest Neovim release URL
+      uri:
+        url: https://api.github.com/repos/neovim/neovim/releases/latest
+        return_content: yes
+      register: neovim_release
+
+    - name: Extract Neovim AppImage URL
+      set_fact:
+        neovim_appimage_url: >-
+          {{ neovim_release.json.assets | selectattr('name', 'search', 'nvim.appimage$') | map(attribute='browser_download_url') | list | first }}
+
+    - name: Download Neovim AppImage
+      get_url:
+        url: "{{ neovim_appimage_url }}"
+        dest: /usr/local/bin/nvim.appimage
+        mode: '0755'
+
+    - name: Create Neovim symlink
+      file:
+        src: /usr/local/bin/nvim.appimage
+        dest: /usr/local/bin/nvim
+        state: link
+        force: yes
