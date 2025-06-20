@@ -12,7 +12,7 @@ if [ $(uname -n) == "pop-os" ]; then
 
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-    git clone https://github.com/noctvale/nightsbane.git nightsbane && cd nightsbane
+    git clone https://github.com/jalusw/dotfiles.git dotfiles && cd dotfiles
 
     stow .
 fi
