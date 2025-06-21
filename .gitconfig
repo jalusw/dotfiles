@@ -41,3 +41,5 @@
 	linenumber = blue
 	match = cyan
 	filename = yellow
+[init]
+	defaultBranch = main
