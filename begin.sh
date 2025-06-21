@@ -35,7 +35,7 @@ if [ $OS_TYPE == "arch" ]; then
     sudo pacman -Syu
 
     echo "Installing packages"
-    sudo pacman -S vim tmux git curl unzip gnupg ca-certificates lsb-release lynx stow xautolock xss-lock zsh \
+    sudo pacman -S base-devel vim tmux git curl unzip gnupg ca-certificates lsb-release lynx stow xautolock xss-lock zsh \
     pavucontrol neovim python3 python3-dev python3-pip lua5.1
 
     echo "Installing Packer for neovim"
