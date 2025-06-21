@@ -103,3 +103,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+export EDITOR=nvim
+export GO_HOME="$HOME/go"
+
+export PATH="$GO_HOME/bin:$PATH"
