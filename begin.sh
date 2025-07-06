@@ -1,8 +1,8 @@
 #!/bin/bash
 
-OS_TYPE=$(uname -n)
+HOSTNAME=$(uname -n)
 
-if [ $OS_TYPE == "pop-os" ]; then
+if [ $HOSTNAME == "pop-os" ]; then
     echo "Setting up for Pop_OS"
     echo "Updating and upgrading packages"
     sudo add-apt-repository ppa:neovim-ppa/unstable 
@@ -27,9 +27,9 @@ if [ $OS_TYPE == "pop-os" ]; then
 
     echo "Stowing dotfiles"
     stow .
-fi
 
-if [ $OS_TYPE == "arch" ]; then
+    echo "Done."
+elif [ $HOSTNAME == "arch" ]; then
     echo "Setting up for Arch Linux"
     echo "Updating and upgrading packages"
     sudo pacman -Syu
@@ -50,6 +50,8 @@ if [ $OS_TYPE == "arch" ]; then
 
     echo "Stowing dotfiles"
     stow .
+    echo "Done."
+else
+  echo "not yet supported."
+  exit 1
 fi
-
-echo "Done"
