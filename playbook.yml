@@ -22,6 +22,7 @@
           - wget
           - unzip
           - build-essential
+          - make
           - software-properties-common
           - ca-certificates
           - gnupg
@@ -84,3 +85,106 @@
           - arandr
         state: present
       tags: [i3, desktop]
+
+    # Neovim
+    - name: Add Neovim PPA
+      apt_repository:
+        repo: ppa:neovim-ppa/unstable
+        state: present
+      tags: [neovim]
+
+    - name: Install Neovim
+      apt:
+        name: neovim
+        state: present
+      tags: [neovim]
+
+    # Golang
+    - name: Install Golang
+      apt:
+        name:
+          - golang
+        state: present
+      tags: [golang]
+
+    # Volta and Node.js
+    - name: Install Volta
+      shell: |
+        curl https://get.volta.sh | bash
+      args:
+        executable: /bin/bash
+      tags: [nodejs, volta]
+
+    - name: Install Node.js using Volta
+      shell: |
+        export VOLTA_HOME="{{ user_home }}/.volta"
+        export PATH="$VOLTA_HOME/bin:$PATH"
+        volta install node
+      environment:
+        VOLTA_HOME: "{{ user_home }}/.volta"
+        PATH: "{{ user_home }}/.volta/bin:{{ ansible_env.PATH }}"
+      tags: [nodejs, volta]
+
+    # Python
+    - name: Install pyenv dependencies
+      apt:
+        name:
+          - libssl-dev
+          - zlib1g-dev
+          - libbz2-dev
+          - libreadline-dev
+          - libsqlite3-dev
+          - wget
+          - curl
+          - llvm
+          - libncurses5-dev
+          - libncursesw5-dev
+          - xz-utils
+          - tk-dev
+          - libffi-dev
+          - liblzma-dev
+          - python3-openssl
+        state: present
+      tags: [python, pyenv]
+
+    - name: Install pyenv
+      shell: |
+        curl https://pyenv.run | bash
+      args:
+        executable: /bin/bash
+      tags: [python, pyenv]
+
+    - name: Configure pyenv in shell
+      lineinfile:
+        path: "{{ user_home }}/.bashrc"
+        line: |
+          export PATH="{{ user_home }}/.pyenv/bin:$PATH"
+          eval "$(pyenv init --path)"
+          eval "$(pyenv virtualenv-init -)"
+      tags: [python, pyenv]
+
+    - name: Install Python using pyenv
+      shell: |
+        export PATH="{{ user_home }}/.pyenv/bin:$PATH"
+        eval "$(pyenv init --path)"
+        pyenv install 3.10.0
+        pyenv global 3.10.0
+      environment:
+        PATH: "{{ user_home }}/.pyenv/bin:{{ ansible_env.PATH }}"
+      tags: [python, pyenv]
+
+    - name: Install Python packages
+      pip:
+        name:
+          - uvloop
+        state: present
+      tags: [python, packages]
+
+    # C Build System
+    - name: Install C build system tools
+      apt:
+        name:
+          - cmake
+          - ninja-build
+        state: present
+      tags: [c, build-system]
