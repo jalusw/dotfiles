@@ -1,0 +1,86 @@
+---
+- name: Setup Local Development Environment
+  hosts: localhost
+  become: yes
+  vars:
+    user_home: "{{ ansible_env.HOME }}"
+    dotfiles_dir: "{{ user_home }}/dotfiles"
+  tasks:
+    - name: Update and upgrade system
+      apt:
+        update_cache: yes
+        upgrade: dist
+        cache_valid_time: 3600
+      tags: [system, update]
+
+    # Essentials tools
+    - name: Install basic tools
+      apt:
+        name:
+          - git
+          - curl
+          - wget
+          - unzip
+          - build-essential
+          - software-properties-common
+          - ca-certificates
+          - gnupg
+          - lsb-release
+          - htop
+          - tree
+          - jq
+          - ripgrep
+          - fd-find
+          - bat
+          - fzf
+        state: present
+      tags: [tools, basic]
+
+    # Docker
+    - name: Add Docker GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+      tags: [docker]
+
+    - name: Add Docker repository
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable
+        state: present
+        filename: docker
+      tags: [docker]
+
+    - name: Install Docker and Docker Compose
+      apt:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
+        state: latest
+        update_cache: yes
+      tags: [docker]
+
+    - name: Add current user to docker group
+      user:
+        name: "{{ ansible_user_id }}"
+        groups: docker
+        append: yes
+      tags: [docker]
+
+    # Window Manager
+    - name: Install i3 window manager and tools
+      apt:
+        name:
+          - i3
+          - i3status
+          - i3lock
+          - dmenu
+          - rofi
+          - picom
+          - feh
+          - scrot
+          - arandr
+        state: present
+      tags: [i3, desktop]
