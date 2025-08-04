@@ -1,4 +1,5 @@
-#/bin/bash
+#!/bin/bash
 
+# Single home monitor uncomment this when using a single monitor setup
 # xrandr --output HDMI-1 --mode 1920x1080 --rate 180 --primary --output eDP-1 --off
 
