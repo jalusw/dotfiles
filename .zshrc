@@ -36,7 +36,6 @@ ZSH_THEME="lambda"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
-
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
 
@@ -102,6 +101,19 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+alias server="python3 -m http.server"
+
+alias d="docker"
+alias dps="docker ps"
+alias di="docker images"
+alias dbash="docker exec -it"
+alias drm="docker rm"
+alias dstop="docker stop"
+
+alias please="sudo"
+alias fuck="sudo $(fc -ln -1)"  
+
 
 export EDITOR=nvim
 export GO_HOME="$HOME/go"
