@@ -112,7 +112,7 @@ alias drm="docker rm"
 alias dstop="docker stop"
 
 alias please="sudo"
-alias fuck="sudo $(fc -ln -1)"  
+alias fuck="sudo \$(fc -ln -1)"
 
 
 export EDITOR=nvim
