@@ -2,7 +2,6 @@
 	name = jalusw
 	email = jalusatrianiwijaya1@gmail.com
 
-
 [alias]
 	co = checkout
 	br = branch
@@ -41,5 +40,6 @@
 	linenumber = blue
 	match = cyan
 	filename = yellow
+
 [init]
 	defaultBranch = main
