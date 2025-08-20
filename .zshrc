@@ -114,8 +114,13 @@ alias dstop="docker stop"
 alias please="sudo"
 alias fuck="sudo \$(fc -ln -1)"
 
+alias sup="sudo apt update && sudo apt upgrade -y"
+alias serve="python3 -m http.server 8000"
+alias ports="lsof -i -P -n | grep LISTEN"
+
 
 export EDITOR=nvim
 export GO_HOME="$HOME/go"
 
 export PATH="$GO_HOME/bin:$PATH"
+export PATH=$PATH:/usr/local/go/bin
