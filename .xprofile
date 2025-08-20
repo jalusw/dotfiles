@@ -1,5 +1,11 @@
 #!/bin/bash
 
-# Single home monitor uncomment this when using a single monitor setup
+# Single monitor 
 # xrandr --output HDMI-1 --mode 1920x1080 --rate 180 --primary --output eDP-1 --off
+
+# Double monitor with vertical one.
+# xrandr --output HDMI-1 --mode 1920x1080 --rate 180 --primary \
+  --output DP-1-2 --mode 1920x1080 --rate 100 --pos 1920x0 --rotate left \
+  --output eDP-1 --off 
+
 
