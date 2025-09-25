@@ -24,5 +24,5 @@ vim.o.clipboard = "unnamedplus"
 vim.o.scrolloff = 8
 vim.o.textwidth = 80
 vim.o.swapfile = false
-
+vim.o.colorcolumn = "80"
 
