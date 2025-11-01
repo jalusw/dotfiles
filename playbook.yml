@@ -4,7 +4,7 @@
   become: yes
   vars:
     user_home: "{{ ansible_env.HOME }}"
-    dotfiles_dir: "{{ user_home }}/dotfiles"
+    dotfiles_dir: "{{ user_home }}/.dotfiles"
   tasks:
     - name: Update and upgrade system
       apt:
@@ -13,11 +13,11 @@
         cache_valid_time: 3600
       tags: [system, update]
 
-    # Essentials tools
-    - name: Install basic tools
+    - name: Install essentials
       apt:
         name:
           - git
+          - zsh
           - curl
           - wget
           - unzip
@@ -34,19 +34,36 @@
           - fd-find
           - bat
           - fzf
-          - xrandr
           - dunst
           - feh
           - pavucontrol
           - flameshot
-          - nmcli
           - pass
           - gpg
           - gnome-keyring
+          - flameshot
+          - stow
+          - arandr
+          - brightnessctl
+          - lynx
         state: present
-      tags: [tools, basic]
+      tags: [system, tools, basic]
 
-    # Docker
+    - name: Install ohmyzsh
+      shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+      tags: [zsh, shell]
+
+    - name: Download Neovim Prebuilt 
+      uri: 
+        url: https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+      tags: [tools, neovim]
+
+    - name: Install Neovim
+      shell: |
+        tar -C /opt -xzf nvim-linux-x86_64.tar.gz
+        export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+      tags: [tools, neovim]
+
     - name: Add Docker GPG key
       apt_key:
         url: https://download.docker.com/linux/ubuntu/gpg
@@ -79,36 +96,6 @@
         append: yes
       tags: [docker]
 
-    # Window Manager
-    - name: Install i3 window manager and tools
-      apt:
-        name:
-          - i3
-          - i3status
-          - i3lock
-          - dmenu
-          - rofi
-          - picom
-          - feh
-          - scrot
-          - arandr
-        state: present
-      tags: [i3, desktop]
-
-    # Neovim
-    - name: Add Neovim PPA
-      apt_repository:
-        repo: ppa:neovim-ppa/unstable
-        state: present
-      tags: [neovim]
-
-    - name: Install Neovim
-      apt:
-        name: neovim
-        state: present
-      tags: [neovim]
-
-    # Golang
     - name: Install Golang
       apt:
         name:
@@ -116,12 +103,9 @@
         state: present
       tags: [golang]
 
-    # Volta and Node.js
     - name: Install Volta
       shell: |
         curl https://get.volta.sh | bash
-      args:
-        executable: /bin/bash
       tags: [nodejs, volta]
 
     - name: Install Node.js using Volta
@@ -134,7 +118,6 @@
         PATH: "{{ user_home }}/.volta/bin:{{ ansible_env.PATH }}"
       tags: [nodejs, volta]
 
-    # Python
     - name: Install pyenv dependencies
       apt:
         name:
@@ -153,6 +136,7 @@
           - libffi-dev
           - liblzma-dev
           - python3-openssl
+          - python3-pip
         state: present
       tags: [python, pyenv]
 
@@ -189,7 +173,6 @@
         state: present
       tags: [python, packages]
 
-    # C Build System
     - name: Install C build system tools
       apt:
         name:

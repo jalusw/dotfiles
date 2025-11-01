@@ -12,3 +12,4 @@ set shiftwidth=2
 set expandtab                 
 set autoindent                
 set linebreak                 
+set colorcolumn=80
