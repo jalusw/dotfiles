@@ -1,7 +1,4 @@
-<p align="center">
-  <h1>Dotfiles</h1>
-</p>
-
+<h1 align="center">Dotfiles</h1>
 <p align="center">
     Reproducible and productive workflow configuration.
 </p>
