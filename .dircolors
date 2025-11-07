@@ -1,0 +1,132 @@
+# Rosé Pine dircolors (xterm-256 approximations)
+# Apply with: eval "$(dircolors -b ~/.dircolors)"
+
+# Terminals
+TERM xterm-256color
+TERM screen-256color
+TERM tmux-256color
+TERM alacritty
+
+# Base attributes
+RESET 0
+NORMAL 00
+FILE 00
+DIR 01;38;5;67        # pine
+LINK 01;38;5;189       # iris
+MULTIHARDLINK 01;38;5;189
+FIFO 38;5;216          # gold
+SOCK 01;38;5;153       # foam
+DOOR 01;38;5;153
+BLK 01;38;5;215        # gold/orange
+CHR 01;38;5;217        # rose
+ORPHAN 01;38;5;211     # love
+MISSING 38;5;211
+EXEC 01;38;5;153       # foam (executables)
+SETUID 01;38;5;255;48;5;52
+SETGID 01;38;5;255;48;5;52
+CAPABILITY 01
+STICKY 01;38;5;254;48;5;60
+OTHER_WRITABLE 01;38;5;254;48;5;60
+STICKY_OTHER_WRITABLE 01;38;5;254;48;5;60
+
+.tar 38;5;215
+.tgz 38;5;215
+.arc 38;5;215
+.arj 38;5;215
+.taz 38;5;215
+.lha 38;5;215
+.lz4 38;5;215
+.lzh 38;5;215
+.lz 38;5;215
+.lzo 38;5;215
+.xz 38;5;215
+.txz 38;5;215
+.t7z 38;5;215
+.zip 38;5;215
+.z 38;5;215
+.Z 38;5;215
+.dz 38;5;215
+.gz 38;5;215
+.bz2 38;5;215
+.bz 38;5;215
+.tbz 38;5;215
+.tbz2 38;5;215
+.tz 38;5;215
+.deb 38;5;215
+.rpm 38;5;215
+.jar 38;5;215
+.apk 38;5;215
+.pak 38;5;215
+
+# Images
+.jpg 38;5;189
+.jpeg 38;5;189
+.png 38;5;189
+.gif 38;5;189
+.bmp 38;5;189
+.tiff 38;5;189
+.svg 38;5;189
+.webp 38;5;189
+.heic 38;5;189
+
+# Audio
+.mp3 38;5;216
+.ogg 38;5;216
+.flac 38;5;216
+.wav 38;5;216
+.m4a 38;5;216
+
+# Video
+.mp4 38;5;211
+.mkv 38;5;211
+.mov 38;5;211
+.webm 38;5;211
+.avi 38;5;211
+
+# Documents
+.pdf 01;38;5;189
+.md 38;5;146
+.txt 38;5;146
+.org 38;5;146
+.rst 38;5;146
+.tex 38;5;146
+.rtf 38;5;146
+.doc 38;5;146
+.docx 38;5;146
+.odt 38;5;146
+.xlsx 38;5;146
+.csv 38;5;146
+
+# Code/config
+.py 38;5;153
+.pyc 38;5;60
+.js 38;5;215
+.mjs 38;5;215
+.ts 38;5;215
+.tsx 38;5;215
+.jsx 38;5;215
+.go 38;5;153
+.rs 38;5;67
+.java 38;5;153
+.c 38;5;67
+.h 38;5;67
+.hpp 38;5;67
+.cpp 38;5;67
+.sh 38;5;153
+.zsh 38;5;153
+.bash 38;5;153
+.lua 38;5;189
+.json 38;5;146
+.yml 38;5;146
+.yaml 38;5;146
+.toml 38;5;146
+.ini 38;5;146
+.conf 38;5;146
+.lock 38;5;60
+.log 38;5;103
+
+# VCS
+.patch 38;5;215
+.diff 38;5;215
+.sig 38;5;103
+.asc 38;5;103

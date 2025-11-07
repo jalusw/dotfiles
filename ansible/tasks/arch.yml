@@ -1,0 +1,57 @@
+---
+- name: Install packages
+  pacman:
+    name: [
+      base-devel,
+      git,
+      zsh,
+      curl,
+      wget,
+      unzip,
+      ca-certificates,
+      gnupg,
+      htop,
+      tree,
+      jq,
+      ripgrep,
+      glow,
+      fd,
+      bat,
+      fzf,
+      dunst,
+      feh,
+      pavucontrol,
+      flameshot,
+      pass,
+      alacritty,
+      kitty,
+      ghostty,
+      go,
+      gnome-keyring,
+      stow,
+      arandr,
+      brightnessctl,
+      wireplumber,
+      waybar,
+      hyprland,
+      hyprpaper,
+      greetd,
+      i3blocks,
+      i3-wm,
+      i3status,
+      wofi,
+      rofi,
+      lynx,
+      swww,
+      docker,
+      docker-compose
+    ]
+    state: present
+  tags: [system, update, essentials]
+
+- name: Add current user to docker group (Arch)
+  user:
+    name: "{{ ansible_user_id }}"
+    groups: docker
+    append: yes
+  tags: [docker]

@@ -1,0 +1,23 @@
+---
+- name: Download Neovim prebuilt
+  get_url:
+    url: https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+    dest: /tmp/nvim-linux-x86_64.tar.gz
+    mode: '0644'
+  tags: [tools, neovim]
+
+- name: Extract Neovim to /opt
+  unarchive:
+    src: /tmp/nvim-linux-x86_64.tar.gz
+    dest: /opt
+    remote_src: yes
+    creates: /opt/nvim-linux-x86_64/bin/nvim
+  tags: [tools, neovim]
+
+- name: Symlink Neovim to /usr/local/bin
+  file:
+    src: /opt/nvim-linux-x86_64/bin/nvim
+    dest: /usr/local/bin/nvim
+    state: link
+    force: yes
+  tags: [tools, neovim]

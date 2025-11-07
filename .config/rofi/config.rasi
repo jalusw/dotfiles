@@ -1,0 +1,6 @@
+configuration {
+    font: "FiraCode Nerd Font Propo 10";
+    show-icons: true;
+    icon-theme: "Pop-dark";
+    modi: "drun,run,window";
+}

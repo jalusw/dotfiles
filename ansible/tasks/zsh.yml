@@ -1,0 +1,14 @@
+---
+- name: Set default shell to zsh
+  user:
+    name: "{{ ansible_user_id }}"
+    shell: /bin/zsh
+
+- name: Download ohmyzsh installation script
+  get_url:
+    url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+    dest: "/tmp/install-zsh.sh"
+    mode: '0755'
+
+- name: Install ohmyzsh
+  script: "/tmp/install-zsh.sh"

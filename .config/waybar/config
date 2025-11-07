@@ -1,0 +1,56 @@
+{
+  "layer": "top",
+  "position": "top",
+  "modules-left": ["hyprland/workspaces"],
+  "modules-center": ["clock"],
+  "modules-right": ["pulseaudio", "memory", "disk#root", "temperature", "battery", "custom/power"],
+
+  "clock": {
+    "format": "{:%a %b %d  %H:%M}",
+    "format-alt": "{:%Y-%m-%d  %H:%M}",
+    "tooltip-format": "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>",
+    "calendar": {
+      "mode": "month",
+      "on-scroll": 1
+    }
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-icons": ["", "", ""],
+    "on-click": "pavucontrol"
+  },
+
+  "custom/power": {
+    "format": "⏻",
+    "tooltip": true,
+    "tooltip-format": "Left: Lock  •  Middle: Sleep  •  Right: Shutdown",
+    "on-click-left": "loginctl lock-session",
+    "on-click-middle": "systemctl suspend",
+    "on-click-right": "systemctl poweroff"
+  },
+
+  "memory": {
+    "interval": 5,
+    "format": " {percentage}%"
+  },
+
+  "disk#root": {
+    "path": "/",
+    "interval": 30,
+    "format": " {percentage_used}%"
+  },
+
+  "temperature": {
+    "interval": 5,
+    "critical-threshold": 80,
+    "format": "{temperatureC}°C {icon}",
+    "format-icons": ["", "", ""]
+  },
+
+  "battery": {
+    "format": "{capacity}% {icon}",
+    "format-icons": ["", "", "", "", ""]
+  }
+}
+

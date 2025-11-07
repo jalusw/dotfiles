@@ -1,0 +1,13 @@
+[general]
+show-icons=true
+show-descriptions=false
+modi=drun
+terminal=alacritty
+prompt=  # Nerd Font terminal icon
+font=Firacode Nerd Font Mono 12
+location=center
+width=40%
+height=auto
+columns=1
+lines=10
+

@@ -1,0 +1,77 @@
+---
+- name: Install essentials
+  apt:
+    name: [
+      git,
+      zsh,
+      curl,
+      wget,
+      unzip,
+      build-essential,
+      make,
+      software-properties-common,
+      ca-certificates,
+      gnupg, lsb-release,
+      htop,
+      tree,
+      jq,
+      ripgrep,
+      fd-find,
+      bat,
+      fzf,
+      dunst,
+      feh,
+      pavucontrol,
+      flameshot,
+      pass,
+      gpg,
+      gnome-keyring,
+      flameshot,
+      stow,
+      arandr,
+      brightnessctl,
+      lynx,
+      i3wm,
+      i3blocks,
+      golang
+    ]
+    update_cache: yes
+    upgrade: dist
+    cache_valid_time: 3600
+  tags: [system, update, essentials]
+
+- name: Add Docker GPG key (Debian/Ubuntu)
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+  when: ansible_os_family == 'Debian'
+  tags: [docker]
+
+- name: Add Docker repository (Debian/Ubuntu)
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable
+    state: present
+    filename: docker
+  when: ansible_os_family == 'Debian'
+  tags: [docker]
+
+- name: Install Docker and Docker Compose (Debian/Ubuntu)
+  apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
+    state: latest
+    update_cache: yes
+  when: ansible_os_family == 'Debian'
+  tags: [docker]
+
+- name: Add current user to docker group (Debian/Ubuntu)
+  user:
+    name: "{{ ansible_user_id }}"
+    groups: docker
+    append: yes
+  when: ansible_os_family == 'Debian'
+  tags: [docker]

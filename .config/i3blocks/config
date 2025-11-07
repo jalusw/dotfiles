@@ -1,0 +1,61 @@
+# i3blocks configuration
+# Each block defines: command, label, interval, and optional click actions.
+
+# ─────────────────────────────────────────────
+# GLOBAL DEFAULTS
+[default]
+separator=true
+separator_block_width=20
+markup=pango
+color=#ffffff
+
+# ─────────────────────────────────────────────
+# CPU usage
+[cpu]
+label=
+command=~/.config/i3blocks/scripts/cpu.sh
+interval=5
+
+# ─────────────────────────────────────────────
+# Memory usage
+[memory]
+label=
+command=~/.config/i3blocks/scripts/memory.sh
+interval=10
+
+# ─────────────────────────────────────────────
+# Disk space
+[disk]
+label=
+command=~/.config/i3blocks/scripts/disk.sh
+interval=30
+
+# ─────────────────────────────────────────────
+# Network (wired or wifi)
+[network]
+label=
+command=~/.config/i3blocks/scripts/network.sh
+interval=10
+
+# ─────────────────────────────────────────────
+# Battery
+[battery]
+label=🔋
+command=~/.config/i3blocks/scripts/battery.sh
+interval=30
+
+# ─────────────────────────────────────────────
+# Volume
+[volume]
+label=
+command=~/.config/i3blocks/scripts/volume.sh
+interval=1
+signal=10
+
+# ─────────────────────────────────────────────
+# Date and Time
+[time]
+label=
+command=date '+%a %d %b %Y %H:%M'
+interval=5
+
