@@ -9,8 +9,9 @@ export NVIM_BIN="/opt/nvim-linux-x86_64/bin"
 export GO_HOME_BIN="$HOME/go/bin"
 export GO_USR_BIN="/usr/local/go/bin"
 export VOLTA="$HOME/.volta"
+export SCRIPTS="$HOME/scripts"
 
-export PATH="$PATH:$HOME_BIN:$GO_HOME:$GO_USR:$NVIM_BIN:$VOLTA"
+export PATH="$PATH:$HOME_BIN:$GO_HOME:$GO_USR:$NVIM_BIN:$VOLTA:$SCRIPTS"
 
 ZSH_THEME="lambda"
 

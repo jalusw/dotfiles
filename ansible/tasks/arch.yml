@@ -1,9 +1,10 @@
 ---
-- name: Install packages
+- name: Install base and essentials
   pacman:
     name: [
       base-devel,
       git,
+      git-delta,
       zsh,
       curl,
       wget,
@@ -18,17 +19,51 @@
       fd,
       bat,
       fzf,
+      stow,
+      go,
+      gnome-keyring
+    ]
+    state: present
+  tags: [system, update, essentials]
+
+- name: Install terminal emulators
+  pacman:
+    name: [ alacritty, kitty, ghostty ]
+    state: present
+  tags: [terminal]
+
+- name: Install shell, prompt, and multiplexer tools
+  pacman:
+    name: [ starship, atuin, zellij, tmux ]
+    state: present
+  tags: [shell, terminal, productivity]
+
+- name: Install CLI productivity and developer tools
+  pacman:
+    name: [
+      eza,
+      tealdeer,
+      yq,
+      httpie,
+      github-cli,
+      lazygit,
+      lazydocker,
+      direnv,
+      sops,
+      age,
+      btop,
+      just
+    ]
+    state: present
+  tags: [productivity, devtools]
+
+- name: Install desktop and window manager packages
+  pacman:
+    name: [
       dunst,
       feh,
       pavucontrol,
       flameshot,
-      pass,
-      alacritty,
-      kitty,
-      ghostty,
-      go,
-      gnome-keyring,
-      stow,
       arandr,
       brightnessctl,
       wireplumber,
@@ -42,12 +77,16 @@
       wofi,
       rofi,
       lynx,
-      swww,
-      docker,
-      docker-compose
+      swww
     ]
     state: present
-  tags: [system, update, essentials]
+  tags: [desktop, wm]
+
+- name: Install Docker packages
+  pacman:
+    name: [ docker, docker-compose ]
+    state: present
+  tags: [docker]
 
 - name: Clone yay from AUR
   git:
@@ -64,21 +103,18 @@
   args:
     chdir: "/tmp/yay"
     creates: /usr/bin/yay
-  ignore_errors: yes
+  tags: [yay]
 
-- name: Install File manager
+- name: Install file managers
   pacman:
-    name: [
-      ranger,
-      dolphin
-  ]
+    name: [ ranger, dolphin, yazi ]
+    state: present
   tags: [filemanager]
 
-- name: Install pdf utils
+- name: Install PDF utilities
   pacman:
-    name: [
-      evince
-  ]
+    name: [ evince ]
+    state: present
   tags: [pdf]
 
 - name: Add current user to docker group

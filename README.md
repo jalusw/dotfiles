@@ -57,3 +57,8 @@ stow .
 # or using makefile
 make link
 ```
+
+### Available runner
+
+`link` to link file through stow.
+`unlink` to unlink file.

@@ -1,23 +1,26 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-set -e 
-
-source /etc/os-release
+. /etc/os-release
 
 echo "Starting bootstrapping..."
 
-# Install ansible
-if [ "$PRETTY_NAME" = "Arch Linux" ]; then
-  sudo pacman -Syu
-  sudo pacman -S base-devel ansible-core
-elif [ "$PRETTY_NAME" = "Pop Os" ] | [ "$PRETTY_NAME" = "Ubuntu" ]; then
-  sudo apt install -y software-properties-common
-  sudo add-apt-repository --yes --update ppa:ansible/ansible
-  sudo apt install -y ansible
-fi
+case "${ID:-}" in
+  arch)
+    sudo pacman -Syu --noconfirm
+    sudo pacman -S --noconfirm base-devel ansible-core
+    ;;
+  ubuntu|pop|debian)
+    sudo apt-get update -y
+    sudo apt-get install -y software-properties-common
+    sudo add-apt-repository --yes --update ppa:ansible/ansible || true
+    sudo apt-get install -y ansible
+    ;;
+  *)
+    echo "Unsupported OS: ${ID:-unknown}" >&2
+    exit 1
+    ;;
+esac
 
-# Run ansible playbook
 make play
-
-# stow
 make link

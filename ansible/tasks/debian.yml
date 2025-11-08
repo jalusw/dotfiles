@@ -1,40 +1,40 @@
 ---
 - name: Install essentials
   apt:
-    name: [
-      git,
-      zsh,
-      curl,
-      wget,
-      unzip,
-      build-essential,
-      make,
-      software-properties-common,
-      ca-certificates,
-      gnupg, lsb-release,
-      htop,
-      tree,
-      jq,
-      ripgrep,
-      fd-find,
-      bat,
-      fzf,
-      dunst,
-      feh,
-      pavucontrol,
-      flameshot,
-      pass,
-      gpg,
-      gnome-keyring,
-      flameshot,
-      stow,
-      arandr,
-      brightnessctl,
-      lynx,
-      i3wm,
-      i3blocks,
-      golang
-    ]
+    name: 
+      - git
+      - zsh
+      - curl
+      - wget
+      - unzip
+      - build-essential
+      - make
+      - software-properties-common
+      - ca-certificates
+      - gnupg
+      - lsb-release
+      - htop
+      - tree
+      - jq
+      - ripgrep
+      - fd-find
+      - bat
+      - fzf
+      - dunst
+      - feh
+      - pavucontrol
+      - flameshot
+      - pass
+      - gpg
+      - gnome-keyring
+      - flameshot
+      - stow
+      - arandr
+      - brightnessctl
+      - lynx
+      - i3wm
+      - i3blocks
+      - golang
     update_cache: yes
     upgrade: dist
     cache_valid_time: 3600

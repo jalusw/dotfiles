@@ -11,5 +11,5 @@
     mode: '0755'
 
 - name: Run installation ohmyzsh installation script
-  script: "/tmp/install-zsh.sh"
+  script: "/tmp/install-ohmyzsh.sh"
   ignore_errors: yes
