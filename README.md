@@ -4,7 +4,7 @@
 </p>
 
 This repository contains my personal configuration that i set up for my own
-personal workflow on Linux based system. The operating system that i use is
+personal workflow on Linux based system. The Linux distro that i use is
 **Arch** or **Debian** family.
 
 ## What this configures
