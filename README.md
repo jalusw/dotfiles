@@ -60,5 +60,7 @@ make link
 
 ### Available runner
 
-`link` to link file through stow.
-`unlink` to unlink file.
+- `bootstrap` bootstrap the environment.
+- `play` run the ansible playbook.
+- `link` stow and link the configuration.
+- `unlink` unlink the configuration.
