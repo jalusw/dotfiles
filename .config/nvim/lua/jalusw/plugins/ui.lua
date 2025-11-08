@@ -78,9 +78,9 @@ return {
       },
     },
     keys = {
-      { "<S-l>",   "<cmd>BufferLineCycleNext<CR>", desc = "Next Buffer" },
-      { "<S-h>",   "<cmd>BufferLineCyclePrev<CR>", desc = "Previous Buffer" },
-      { "<S-Esc>", "<cmd>bd<CR>",                  desc = "Close Buffer" },
+      { "<S-l>", "<cmd>BufferLineCycleNext<CR>", desc = "Next Buffer" },
+      { "<S-h>", "<cmd>BufferLineCyclePrev<CR>", desc = "Previous Buffer" },
+      { "<S-q>", "<cmd>bd<CR>",                  desc = "Close Buffer" },
     }
   },
   {
