@@ -1,5 +1,6 @@
 README.md
-Vagrantfile
+vagrant
 Makefile
 bootstrap.sh
 ansible
+.git
