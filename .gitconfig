@@ -1,7 +1,116 @@
 [user]
 	email = jalusatrianiwijaya1@gmail.com
 	name = Jalu Satriani Wijaya
-[branch]
-	defaultName = main
+
+[core]
+  editor = nvim
+  whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  autocrlf = input
+  safecrlf = true
+  fileMode = true
+  ignorecase = false
+  quotepath = false
+  pager = delta
+  excludesfile = ~/.gitignore_global
+
+[color]
+    ui = auto
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+
 [init]
 	defaultBranch = main
+
+[alias]
+  st = status -sb
+  br = branch
+  co = checkout
+  sw = switch
+  df = diff
+  dcs = diff --cached
+  lg = log --graph --decorate --all --abbrev-commit --date=relative \
+       --format='%C(yellow)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+  hist = log --oneline --decorate --graph --all
+  last = log -1 HEAD
+  ci = commit
+  amend = commit --amend --no-edit
+  undo = reset --soft HEAD~1
+  unstage = reset HEAD --
+  wip = "!git add -A && git commit -m 'WIP'"
+  fixup = "!f() { git commit --fixup=$1 && git rebase -i --autosquash $1; }; f"
+  pl = pull --rebase --autostash
+  ps = push
+  pf = push --force-with-lease
+  up = "!git fetch -p && git rebase"
+  sync = "!git pull --rebase --autostash && git push"
+  cleanup = "!git fetch -p && git branch --merged | egrep -v '(^\\*|main|master|develop)' | xargs -r git branch -d"
+  discard = "!git restore --staged . && git restore ."
+  rb = rebase
+  rbi = rebase -i
+  pick = cherry-pick
+  squash = "!f(){ git rebase -i HEAD~$1; }; f"
+  whoami = "!echo 'User: $(git config user.name) <$(git ;config user.email)>'"
+  where = rev-parse --show-toplevel
+  wt = worktree list
+  wta = "!f() { branch=\"$1\"; dir=\"${2:-../$1}\"; git worktree add -B \"$branch\" \"$dir\" \"origin/$branch\" 2>/dev/null || git worktree add \"$dir\" \"$branch\"; }; f"
+  wtr = "!f() { git worktree remove \"$1\"; }; f"
+  wtu = "!git worktree prune"
+  wts = "!cd \"$1\" && git status"
+  wt-clean = "!git fetch -p && git worktree prune"
+
+[fetch]
+  prune = true
+
+[pull]
+  rebase = true
+
+[rebase]
+  autosquash = true
+  autostash = true
+
+[push]
+  autoSetupRemote = true
+
+[diff]
+  colorMoved = default
+  tool = delta
+
+[merge]
+  conflictstyle = zdiff3
+  tool = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true
+  line-numbers = true
+  hyperlinks = true
+  side-by-side = false
+  syntax-theme = Monokai Extended
+
+[delta "decorations"]
+  commit-decoration-style = bold yellow box ul
+  commit-style = raw
+  file-style = omit
+  hunk-header-decoration-style = yellow box
+  hunk-header-style = file line-number syntax
+
+[difftool "delta"]
+  cmd = delta --width=$COLUMNS --paging=always --line-numbers --color-only
+
+[mergetool "delta"]
+  cmd = delta --merge-conflict-style=diff3 --color-only
+  prompt = false
+
+[grep]
+  lineNumber = true
+  patternType = perl
+
+[status]
+  submoduleSummary = true
+
+[commit]
+  verbose = true
