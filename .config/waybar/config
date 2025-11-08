@@ -42,6 +42,10 @@
   "battery": {
     "format": "{capacity}% {icon}",
     "format-icons": ["", "", "", "", ""]
-  }
+  },
+
+  "tray": {
+      "spacing": 12
+    }
 }
 
