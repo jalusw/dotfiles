@@ -5,6 +5,10 @@
   "modules-center": ["hyprland/window"],
   "modules-right": ["tray", "pulseaudio", "memory", "disk#root", "temperature", "battery",  "clock"],
 
+  "hyprland/window": {
+    "max-length": 20
+  },
+
   "hyprland/workspaces": {
       "format": "{name}",
       "all-outputs": true,
