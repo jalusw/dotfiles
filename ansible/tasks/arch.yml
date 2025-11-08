@@ -49,7 +49,24 @@
     state: present
   tags: [system, update, essentials]
 
-- name: Install filemanager
+- name: Clone yay from AUR
+  git:
+    repo: "https://aur.archlinux.org/yay.git"
+    dest: "/tmp/yay"
+    update: yes
+  tags: [yay]
+  ignore_errors: yes
+
+- name: Build and install yay
+  shell: |
+    cd /tmp/yay
+    makepkg -si --noconfirm
+  args:
+    chdir: "/tmp/yay"
+    creates: /usr/bin/yay
+  ignore_errors: yes
+
+- name: Install File manager
   pacman:
     name: [
       ranger,
