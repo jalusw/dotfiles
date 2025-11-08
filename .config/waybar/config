@@ -2,8 +2,15 @@
   "layer": "top",
   "position": "top",
   "modules-left": ["hyprland/workspaces"],
-  "modules-center": ["clock"],
-  "modules-right": ["pulseaudio", "memory", "disk#root", "temperature", "battery", "tray"],
+  "modules-center": ["hyprland/window"],
+  "modules-right": ["tray", "pulseaudio", "memory", "disk#root", "temperature", "battery",  "clock"],
+
+  "hyprland/workspaces": {
+      "format": "{name}",
+      "all-outputs": true,
+      "active-only": false,
+      "show-special": true,
+  },
 
   "clock": {
     "format": "{:%a %b %d  %H:%M}",
