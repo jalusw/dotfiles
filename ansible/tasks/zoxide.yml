@@ -1,0 +1,10 @@
+---
+- name: Download zoxide installation script
+  get_url:
+    url: https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh
+    dest: "/tmp/install-zoxide.sh"
+    mode: '0755'
+
+- name: Run zoxide installation script
+  script: "/tmp/install-zoxide.sh"
+  ignore_errors: yes

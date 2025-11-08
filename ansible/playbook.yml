@@ -16,6 +16,9 @@
       when: ansible_os_family == 'Archlinux' or (ansible_distribution is defined and ansible_distribution | lower == 'archlinux')
       tags: [system, update, essentials]
 
+    - name: Include zoxide installation
+      include_tasks: "tasks/zoxide.yml"
+
     - name: Include zsh and ohmyzsh setup
       include_tasks: "tasks/zsh.yml"
 

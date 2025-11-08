@@ -7,8 +7,9 @@
 - name: Download ohmyzsh installation script
   get_url:
     url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-    dest: "/tmp/install-zsh.sh"
+    dest: "/tmp/install-ohmyzsh.sh"
     mode: '0755'
 
-- name: Install ohmyzsh
+- name: Run installation ohmyzsh installation script
   script: "/tmp/install-zsh.sh"
+  ignore_errors: yes

@@ -40,14 +40,14 @@
     cache_valid_time: 3600
   tags: [system, update, essentials]
 
-- name: Add Docker GPG key (Debian/Ubuntu)
+- name: Add Docker GPG key
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
     state: present
   when: ansible_os_family == 'Debian'
   tags: [docker]
 
-- name: Add Docker repository (Debian/Ubuntu)
+- name: Add Docker repository
   apt_repository:
     repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable
     state: present
@@ -55,7 +55,7 @@
   when: ansible_os_family == 'Debian'
   tags: [docker]
 
-- name: Install Docker and Docker Compose (Debian/Ubuntu)
+- name: Install Docker and Docker Compose
   apt:
     name:
       - docker-ce
@@ -68,7 +68,7 @@
   when: ansible_os_family == 'Debian'
   tags: [docker]
 
-- name: Add current user to docker group (Debian/Ubuntu)
+- name: Add current user to docker group
   user:
     name: "{{ ansible_user_id }}"
     groups: docker
