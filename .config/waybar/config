@@ -3,7 +3,7 @@
   "position": "top",
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
-  "modules-right": ["pulseaudio", "memory", "disk#root", "temperature", "battery", "custom/power"],
+  "modules-right": ["pulseaudio", "memory", "disk#root", "temperature", "battery", "tray"],
 
   "clock": {
     "format": "{:%a %b %d  %H:%M}",
@@ -19,15 +19,6 @@
     "format": "{icon} {volume}%",
     "format-icons": ["", "", ""],
     "on-click": "pavucontrol"
-  },
-
-  "custom/power": {
-    "format": "⏻",
-    "tooltip": true,
-    "tooltip-format": "Left: Lock  •  Middle: Sleep  •  Right: Shutdown",
-    "on-click-left": "loginctl lock-session",
-    "on-click-middle": "systemctl suspend",
-    "on-click-right": "systemctl poweroff"
   },
 
   "memory": {
