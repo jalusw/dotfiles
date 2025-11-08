@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if ! command -v nmcli >/dev/null 2>&1; then
+  echo "nmcli not found" >&2
+  exit 1
+fi
+
+state="$(nmcli -t -f WIFI general | tr '[:upper:]' '[:lower:]')"
+if [[ "$state" == "enabled" ]]; then
+  nmcli radio wifi off
+  echo "Wi-Fi: off"
+else
+  nmcli radio wifi on
+  echo "Wi-Fi: on"
+fi
+
+

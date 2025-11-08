@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "[sys-clean] Cleaning package caches and old logs..."
+
+if command -v yay >/dev/null 2>&1; then
+  yay -Sc --noconfirm || true
+elif command -v pacman >/dev/null 2>&1; then
+  sudo pacman -Sc --noconfirm || true
+fi
+
+# Vacuum systemd journals older than 14 days
+if command -v journalctl >/dev/null 2>&1; then
+  sudo journalctl --vacuum-time=14d || true
+fi
+
+# Docker system prune if available
+if command -v docker >/dev/null 2>&1; then
+  docker system prune -af || true
+fi
+
+echo "[sys-clean] Done."
+
+

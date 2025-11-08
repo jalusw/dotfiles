@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+dir="${XDG_PICTURES_DIR:-$HOME/Pictures}/Screenshots"
+mkdir -p "$dir"
+file="$dir/Screenshot_$(date +'%Y%m%d_%H%M%S').png"
+
+session="${XDG_SESSION_TYPE:-}"
+
+if [[ "$session" == "wayland" ]]; then
+  if command -v grim >/dev/null 2>&1 && command -v slurp >/dev/null 2>&1; then
+    region="$(slurp)"
+    grim -g "$region" "$file"
+    command -v notify-send >/dev/null 2>&1 && notify-send "Screenshot saved" "$file"
+    echo "$file"
+    exit 0
+  fi
+fi
+
+if command -v flameshot >/dev/null 2>&1; then
+  flameshot gui -p "$dir"
+  exit 0
+fi
+
+echo "No supported screenshot tool found (grim+slurp on Wayland or flameshot)" >&2
+exit 1
+
+

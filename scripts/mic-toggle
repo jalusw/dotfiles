@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if ! command -v wpctl >/dev/null 2>&1; then
+  echo "wpctl not found" >&2
+  exit 1
+fi
+
+wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+echo "Microphone mute toggled"
+
+

@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if ! command -v autorandr >/dev/null 2>&1; then
+  echo "autorandr not found. Install it or create profiles first." >&2
+  exit 1
+fi
+
+profile="${1:-}"
+if [[ -z "$profile" ]]; then
+  echo "Usage: display-profile <profile>"
+  echo
+  echo "Available profiles:"
+  autorandr --list | sed -E 's/^/  /'
+  exit 2
+fi
+
+autorandr --load "$profile"
+echo "Display profile set: $profile"
+
+

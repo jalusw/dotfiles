@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Runs a one-off TRIM on all mounted filesystems that support it.
+# Optional: pass --enable-timer to enable weekly fstrim via systemd.
+
+enable_timer=0
+if [[ "${1:-}" == "--enable-timer" ]]; then
+  enable_timer=1
+fi
+
+if ! command -v fstrim >/dev/null 2>&1; then
+  echo "fstrim not found. Install util-linux." >&2
+  exit 1
+fi
+
+echo "[ssd-trim] Running fstrim -Av ..."
+sudo fstrim -Av
+
+if [[ "$enable_timer" -eq 1 ]]; then
+  if command -v systemctl >/dev/null 2>&1; then
+    echo "[ssd-trim] Enabling weekly fstrim.timer ..."
+    sudo systemctl enable --now fstrim.timer
+    systemctl status fstrim.timer --no-pager || true
+  else
+    echo "[ssd-trim] systemctl not available; cannot enable timer." >&2
+  fi
+fi
+
+echo "[ssd-trim] Done."
+
+

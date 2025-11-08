@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if ! command -v docker >/dev/null 2>&1; then
+  echo "docker not found" >&2
+  exit 1
+fi
+
+docker system prune -af --volumes
+echo "Docker pruned (including volumes)"
+
+

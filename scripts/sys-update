@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "[sys-update] Starting system update..."
+
+if command -v yay >/dev/null 2>&1; then
+  yay -Syu --noconfirm
+elif command -v pacman >/dev/null 2>&1; then
+  sudo pacman -Syu --noconfirm
+fi
+
+if command -v flatpak >/dev/null 2>&1; then
+  flatpak update -y || true
+fi
+
+echo "[sys-update] Done."
+
+

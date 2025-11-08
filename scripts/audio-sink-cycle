@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if ! command -v wpctl >/dev/null 2>&1; then
+  echo "wpctl not found" >&2
+  exit 1
+fi
+
+mapfile -t sinks < <(wpctl status | awk '/Sinks:/{flag=1;next}/Sources:/{flag=0}flag')
+if [[ "${#sinks[@]}" -eq 0 ]]; then
+  echo "No sinks found" >&2
+  exit 1
+fi
+
+# Extract IDs and detect current default (marked with '*')
+ids=()
+current_idx=-1
+for i in "${!sinks[@]}"; do
+  line="${sinks[$i]}"
+  id="$(sed -E 's/^[[:space:]]*\*?([0-9]+)\..*/\1/' <<<"$line")"
+  ids+=("$id")
+  if [[ "$line" =~ ^[[:space:]]*\* ]]; then
+    current_idx="$i"
+  fi
+done
+
+if [[ "$current_idx" -lt 0 ]]; then
+  current_idx=0
+fi
+
+next_idx=$(( (current_idx + 1) % ${#ids[@]} ))
+next_id="${ids[$next_idx]}"
+
+wpctl set-default "$next_id"
+echo "Default sink set to ID: $next_id"
+
+

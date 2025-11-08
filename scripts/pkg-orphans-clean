@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Remove orphaned packages on Arch-based systems.
+# Will prompt pacman/yay for removal in a non-interactive way.
+
+remove_cmd=""
+if command -v yay >/dev/null 2>&1; then
+  remove_cmd="yay -Rns --noconfirm"
+elif command -v pacman >/dev/null 2>&1; then
+  remove_cmd="sudo pacman -Rns --noconfirm"
+else
+  echo "Neither yay nor pacman found." >&2
+  exit 1
+fi
+
+if ! command -v pacman >/dev/null 2>&1; then
+  echo "pacman not found." >&2
+  exit 1
+fi
+
+orphans="$(pacman -Qtdq || true)"
+if [[ -z "${orphans}" ]]; then
+  echo "[pkg-orphans-clean] No orphan packages found."
+  exit 0
+fi
+
+echo "[pkg-orphans-clean] Removing orphans:"
+echo "${orphans}"
+
+# shellcheck disable=SC2086
+${remove_cmd} ${orphans}
+
+echo "[pkg-orphans-clean] Done."
+
+

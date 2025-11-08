@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+choice="${1:-balanced}"
+case "$choice" in
+  power-saver|balanced|performance) ;;
+  *)
+    echo "Usage: battery-profile [power-saver|balanced|performance]" >&2
+    exit 2
+    ;;
+esac
+
+if command -v powerprofilesctl >/dev/null 2>&1; then
+  powerprofilesctl set "$choice"
+  echo "Power profile: $choice"
+  exit 0
+fi
+
+echo "powerprofilesctl not found. Consider installing power-profiles-daemon." >&2
+exit 1
+
+

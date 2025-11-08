@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if command -v brightnessctl >/dev/null 2>&1; then
+  if brightnessctl set +10% 2>/dev/null; then
+    echo "Brightness up"
+    exit 0
+  fi
+  sudo brightnessctl set +10%
+  echo "Brightness up (sudo)"
+  exit 0
+fi
+
+echo "brightnessctl not found" >&2
+exit 1
+
+

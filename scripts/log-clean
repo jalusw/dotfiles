@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Clean systemd-journald logs by age or size.
+# Usage:
+#   log-clean [AGE]        # e.g., 14d, 2weeks, 3months (default: 14d)
+#   log-clean --size 500M  # vacuum to total size
+#
+# Requires: journalctl (systemd)
+
+if ! command -v journalctl >/dev/null 2>&1; then
+  echo "journalctl not found. This requires systemd-journald." >&2
+  exit 1
+fi
+
+age="${1:-14d}"
+if [[ "${1:-}" == "--size" ]]; then
+  size="${2:-500M}"
+  echo "[log-clean] Vacuuming journal to size: ${size}"
+  sudo journalctl --vacuum-size="${size}"
+else
+  echo "[log-clean] Vacuuming journal older than: ${age}"
+  sudo journalctl --vacuum-time="${age}"
+fi
+
+echo "[log-clean] Current journal disk usage:"
+journalctl --disk-usage || true
+
+echo "[log-clean] Done."
+
+
