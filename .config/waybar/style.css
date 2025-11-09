@@ -15,7 +15,7 @@ button:hover {
   background: inherit;
 }
 
-window#waybar {
+#waybar {
   background-color: transparent;
   transition-property: background-color;
   transition-duration: 0.5s;
@@ -67,18 +67,6 @@ window#waybar {
 #workspaces button.focused {
   background: rgba(0, 0, 0, 0.2);
   color: #9730fd;
-}
-
-#workspaces button.focused + button {
-  border-left: none;
-}
-
-#workspaces button.focused:first-child {
-  border-left: none;
-}
-
-#workspaces button.focused:last-child {
-  border-right: none;
 }
 
 #workspaces button.urgent {

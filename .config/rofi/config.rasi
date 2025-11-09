@@ -1,5 +1,5 @@
 configuration {
-    font: "FiraCode Nerd Font Propo 10";
+    font: "FiraCode Nerd Font Mono 12";
     show-icons: true;
     icon-theme: "Pop-dark";
     modi: "drun,run,window";
