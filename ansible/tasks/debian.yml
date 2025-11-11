@@ -1,18 +1,18 @@
 ---
-- name: Install essentials
+- name: Install base and essentials
   apt:
     name:
+      - build-essential
+      - make
+      - software-properties-common
+      - lsb-release
       - git
       - zsh
       - curl
       - wget
       - unzip
-      - build-essential
-      - make
-      - software-properties-common
       - ca-certificates
       - gnupg
-      - lsb-release
       - htop
       - tree
       - jq
@@ -20,25 +20,126 @@
       - fd-find
       - bat
       - fzf
+      - stow
+      - golang-go
+      - gnome-keyring
+    state: present
+    update_cache: true
+    cache_valid_time: 3600
+  tags: [system, update, essentials]
+
+- name: Install terminal emulators
+  apt:
+    name:
+      - kitty
+    state: present
+    update_cache: true
+    cache_valid_time: 3600
+  tags: [terminal]
+
+- name: Install shell, prompt, and multiplexer tools
+  apt:
+    name:
+      - tmux
+    state: present
+    update_cache: true
+    cache_valid_time: 3600
+  tags: [shell, terminal, productivity]
+
+- name: Install CLI productivity and developer tools
+  apt:
+    name:
+      - httpie
+      - direnv
+      - age
+      - btop
+    state: present
+    update_cache: true
+    cache_valid_time: 3600
+  tags: [productivity, devtools]
+
+- name: Install desktop and window manager packages
+  apt:
+    name:
       - dunst
       - feh
       - pavucontrol
       - flameshot
-      - pass
-      - gpg
-      - gnome-keyring
-      - flameshot
-      - stow
       - arandr
       - brightnessctl
-      - lynx
-      - i3wm
+      - wireplumber
+      - waybar
       - i3blocks
-      - golang
-    update_cache: yes
-    upgrade: dist
+      - i3-wm
+      - i3status
+      - rofi
+      - lynx
+    state: present
+    update_cache: true
     cache_valid_time: 3600
-  tags: [system, update, essentials]
+  tags: [desktop, wm]
+
+- name: Install Python development tools
+  apt:
+    name:
+      - python3-pip
+      - python3-venv
+      - python3-poetry
+    state: present
+    update_cache: true
+    cache_valid_time: 3600
+  tags: [python]
+
+- name: Install Node.js development tools
+  apt:
+    name:
+      - nodejs
+      - npm
+    state: present
+    update_cache: true
+    cache_valid_time: 3600
+  tags: [nodejs]
+
+- name: Install cpp development tools
+  apt:
+    name:
+      - cppcheck
+      - lcov
+      - gcovr
+      - clang
+      - clang-tools
+      - lldb
+      - lld
+      - cmake
+      - ninja-build
+      - meson
+      - gdb
+      - valgrind
+      - ccache
+      - pkg-config
+    state: present
+    update_cache: true
+    cache_valid_time: 3600
+  tags: [cpp]
+
+- name: Install file managers
+  apt:
+    name:
+      - ranger
+      - dolphin
+    state: present
+    update_cache: true
+    cache_valid_time: 3600
+  tags: [filemanager]
+
+- name: Install PDF utilities
+  apt:
+    name:
+      - evince
+    state: present
+    update_cache: true
+    cache_valid_time: 3600
+  tags: [pdf]
 
 - name: Add Docker GPG key
   apt_key:

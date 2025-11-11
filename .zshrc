@@ -10,8 +10,9 @@ export GO_HOME_BIN="$HOME/go/bin"
 export GO_USR_BIN="/usr/local/go/bin"
 export VOLTA="$HOME/.volta"
 export SCRIPTS="$HOME/scripts"
+export FZF_PATH="$HOME/.fzf/bin"
 
-export PATH="$PATH:$HOME_BIN:$GO_HOME:$GO_USR:$NVIM_BIN:$VOLTA:$SCRIPTS"
+export PATH="$PATH:$HOME_BIN:$GO_HOME:$GO_USR:$NVIM_BIN:$VOLTA:$SCRIPTS:$FZF_PATH"
 
 ZSH_THEME="lambda"
 
@@ -43,8 +44,3 @@ export PYENV_ROOT="$HOME/.pyenv"
 
 eval "$(pyenv init - zsh)"
 eval "$(dircolors -b ~/.dircolors)"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
