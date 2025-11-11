@@ -105,6 +105,30 @@
     creates: /usr/bin/yay
   tags: [yay]
 
+- name: Install Rust development tools
+  pacman:
+    name: [ rustup ]
+    state: present
+  tags: [rust]
+
+- name: Install Python development tools
+  pacman:
+    name: [ python-pip, python-virtualenv, python-poetry ]
+    state: present
+  tags: [python]
+
+- name: Install Node.js development tools
+  pacman:
+    name: [ nodejs, npm, yarn ]
+    state: present
+  tags: [nodejs]
+
+- name: Install cpp development tools
+  pacman:
+    name: [ cppcheck, lcov, gcovr, radare2, clang, clang-tools-extra, lldb, lld, cmake, ninja, meson, gdb, valgrind, ccache, pkgconf, bear ]
+    state: present
+  tags: [cpp]
+
 - name: Install file managers
   pacman:
     name: [ ranger, dolphin, yazi ]

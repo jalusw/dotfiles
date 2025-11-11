@@ -24,3 +24,7 @@
 
     - name: Include neovim installation tasks
       include_tasks: "tasks/neovim.yml"
+
+    - name: Include development tasks
+      include_tasks: "tasks/development.yml"
+      tags: [development]

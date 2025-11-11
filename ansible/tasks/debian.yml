@@ -1,7 +1,7 @@
 ---
 - name: Install essentials
   apt:
-    name: 
+    name:
       - git
       - zsh
       - curl
