@@ -78,3 +78,7 @@ Icon?
 
 *.log
 *.cache
+*firebase-key*.json
+*openapi*.json
+
+ignore_*

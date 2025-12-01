@@ -1,6 +1,9 @@
 [user]
 	email = jalusatrianiwijaya1@gmail.com
-	name = Jalu Satriani Wijaya
+	name = jalusw
+
+[includeIf "gitdir:~/Repositories/pro/"]
+  path = "~/.gitconfig-pro"
 
 [core]
   editor = nvim
@@ -14,11 +17,11 @@
   excludesfile = ~/.gitignore_global
 
 [color]
-    ui = auto
-    diff = auto
-    status = auto
-    branch = auto
-    interactive = auto
+  ui = auto
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
 
 [init]
 	defaultBranch = main
