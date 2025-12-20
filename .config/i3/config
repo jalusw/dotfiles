@@ -7,13 +7,11 @@ set $mod Mod4
 set $terminal alacritty
 
 # Font
-font pango:FiraCode Nerd Font Propo 10
+font pango:FiraCode Nerd Font 10
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
-exec --no-startup-id picom
-exec --no-startup-id nitrogen
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -145,25 +143,25 @@ bindsym $mod+r mode "resize"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+  # Pressing left will shrink the window’s width.
+  # Pressing right will grow the window’s width.
+  # Pressing up will shrink the window’s height.
+  # Pressing down will grow the window’s height.
+  bindsym j resize shrink width 10 px or 10 ppt
+  bindsym k resize grow height 10 px or 10 ppt
+  bindsym l resize shrink height 10 px or 10 ppt
+  bindsym semicolon resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+  # same bindings, but for the arrow keys
+  bindsym Left resize shrink width 10 px or 10 ppt
+  bindsym Down resize grow height 10 px or 10 ppt
+  bindsym Up resize shrink height 10 px or 10 ppt
+  bindsym Right resize grow width 10 px or 10 ppt
 
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
+  # back to normal: Enter or Escape or $mod+r
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+  bindsym $mod+r mode "default"
 }
 
 
@@ -175,6 +173,21 @@ gaps inner 8
 
 # Status Bar
 bar {
-        status_command i3blocks
-        position top
+  status_command i3blocks
+  position top
+  height 20
+
+  colors {
+    background #111111
+    statusline #9e9e9e
+    separator  #fff
+    focused_workspace  #000000 #000000 #fdfdfd
+    inactive_workspace #353535 #353535 #b3b3b3
+    urgent_workspace   #111313 #111313 #b3b3b3
+	}
 }
+
+# class           border  backgr  text  
+client.focused   #000000 #111111 #ffffff
+client.unfocused #333333 #333333 #ffffff
+client.urgent    #000000 #000000 #fdfdfd

@@ -82,7 +82,7 @@
 
 [merge]
   conflictstyle = zdiff3
-  tool = delta
+	tool = meld
 
 [interactive]
   diffFilter = delta --color-only

@@ -12,7 +12,7 @@ export VOLTA="$HOME/.volta"
 export SCRIPTS="$HOME/scripts"
 export FZF_PATH="$HOME/.fzf/bin"
 
-export PATH="$PATH:$HOME_BIN:$GO_HOME:$GO_USR:$NVIM_BIN:$VOLTA:$SCRIPTS:$FZF_PATH"
+export PATH="$PATH:$HOME_BIN:$GO_HOME_BIN:$GO_USR_BIN:$NVIM_BIN:$VOLTA:$SCRIPTS:$FZF_PATH"
 
 ZSH_THEME="lambda"
 
@@ -38,9 +38,9 @@ alias fuck="sudo \$(fc -ln -1)"
 alias serve="python3 -m http.server 8000"
 alias ports="lsof -i -P -n | grep LISTEN"
 
-
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 
 eval "$(pyenv init - zsh)"
 eval "$(dircolors -b ~/.dircolors)"
+

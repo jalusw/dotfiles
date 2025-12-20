@@ -122,25 +122,6 @@
     cache_valid_time: 3600
   tags: [cpp]
 
-- name: Install file managers
-  apt:
-    name:
-      - ranger
-      - dolphin
-    state: present
-    update_cache: true
-    cache_valid_time: 3600
-  tags: [filemanager]
-
-- name: Install PDF utilities
-  apt:
-    name:
-      - evince
-    state: present
-    update_cache: true
-    cache_valid_time: 3600
-  tags: [pdf]
-
 - name: Add Docker GPG key
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
