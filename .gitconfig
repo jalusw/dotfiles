@@ -1,9 +1,9 @@
 [user]
-	email = jalusatrianiwijaya1@gmail.com
+	email = jsatrianiwijaya@gmail.com
 	name = jalusw
 
-[includeIf "gitdir:~/Repositories/pro/"]
-  path = "~/.gitconfig-pro"
+[includeIf "gitdir:~/repositories/velzi/"]
+  path = "~/.gitconfig-velzi"
 
 [core]
   editor = nvim
