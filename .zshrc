@@ -20,7 +20,6 @@ plugins=(
   git
   ssh
   fzf
-  tmux
   docker
   zoxide
   debian
@@ -44,3 +43,5 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init - zsh)"
 eval "$(dircolors -b ~/.dircolors)"
 
+# opencode
+export PATH=/home/jalusw/.opencode/bin:$PATH
