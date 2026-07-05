@@ -1,26 +1,35 @@
 ---
 - name: Setup Local Development Environment
   hosts: localhost
-  become: yes
+  become: true
+  gather_facts: true
+
   vars:
     user_home: "{{ ansible_env.HOME }}"
     dotfiles_dir: "{{ user_home }}/.dotfiles"
+
   tasks:
     - name: Include Debian-specific tasks
-      include_tasks: "tasks/debian.yml"
-      when: ansible_os_family == 'Debian'
-      tags: [system, update, essentials]
+      ansible.builtin.include_tasks: tasks/debian.yml
+      when: ansible_facts.os_family == "Debian"
+      tags:
+        - system
+        - update
+        - essentials
 
     - name: Include Arch-specific tasks
-      include_tasks: "tasks/arch.yml"
-      when: ansible_os_family == 'Archlinux' or (ansible_distribution is defined and ansible_distribution | lower == 'archlinux')
-      tags: [system, update, essentials]
+      ansible.builtin.include_tasks: tasks/arch.yml
+      when: ansible_facts.os_family == "Archlinux"
+      tags:
+        - system
+        - update
+        - essentials
 
     - name: Include zoxide installation
-      include_tasks: "tasks/zoxide.yml"
+      ansible.builtin.include_tasks: tasks/zoxide.yml
 
-    - name: Include zsh and ohmyzsh setup
-      include_tasks: "tasks/zsh.yml"
+    - name: Include Zsh and Oh My Zsh setup
+      ansible.builtin.include_tasks: tasks/zsh.yml
 
-    - name: Include neovim installation tasks
-      include_tasks: "tasks/neovim.yml"
+    - name: Include Neovim installation tasks
+      ansible.builtin.include_tasks: tasks/neovim.yml

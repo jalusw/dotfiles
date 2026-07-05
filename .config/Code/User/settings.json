@@ -30,6 +30,7 @@
   "diffEditor.ignoreTrimWhitespace": false,
   "git.blame.editorDecoration.enabled": true,
   "git.blame.statusBarItem.enabled": false,
+  "workbench.colorTheme": "Rosé Pine",
   "workbench.iconTheme": "vscode-icons",
   "workbench.editor.editorActionsLocation": "hidden",
   "git.openRepositoryInParentFolders": "never",

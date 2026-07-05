@@ -1,0 +1,51 @@
+# Lazygit config — Rosé Pine
+gui:
+  theme:
+    lightTheme: false
+    activeBorderColor:
+      - "#c4a7e7"
+      - bold
+    inactiveBorderColor:
+      - "#403d52"
+    optionsTextColor:
+      - "#9ccfd8"
+    selectedLineBgColor:
+      - "#26233a"
+    cherryPickedCommitBgColor:
+      - "#31748f"
+    cherryPickedCommitFgColor:
+      - "#e0def4"
+    unstagedChangesColor:
+      - "#eb6f92"
+    defaultFgColor:
+      - "#e0def4"
+    searchingActiveBorderColor:
+      - "#f6c177"
+
+  authorColors:
+    "*": "#c4a7e7"
+
+  nerdFontsVersion: "3"
+  showFileTree: true
+  showBottomLine: false
+  showCommandLog: false
+  showRandomTip: false
+  showListFooter: false
+  skipNoStagedFilesWarning: true
+  showIcons: true
+  startMaximised: false
+
+git:
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never
+  branchLogCmd: "git log --graph --oneline --abbrev-commit --decorate --all"
+  allBranchesLogCmd: "git log --graph --oneline --abbrev-commit --decorate --all"
+  overrideGpg: true
+  parseEmoji: true
+
+os:
+  editPreset: "nvim"
+
+notifications:
+  command: "dunstify"

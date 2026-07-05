@@ -13,7 +13,7 @@
       "format": "{name}",
       "all-outputs": true,
       "active-only": false,
-      "show-special": true,
+      "show-special": true
   },
 
   "clock": {

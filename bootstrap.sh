@@ -8,7 +8,7 @@ echo "Starting bootstrapping..."
 case "${ID:-}" in
   arch)
     sudo pacman -Syu --noconfirm
-    sudo pacman -S --noconfirm base-devel ansible-core
+    sudo pacman -S --noconfirm base-devel ansible ansible-core
     ;;
   ubuntu|pop|debian)
     sudo apt-get update -y

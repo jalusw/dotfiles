@@ -1,149 +1,213 @@
 ---
 - name: Install base and essentials
-  pacman:
-    name: [
-      base-devel,
-      git,
-      git-delta,
-      zsh,
-      curl,
-      wget,
-      unzip,
-      ca-certificates,
-      gnupg,
-      htop,
-      tree,
-      jq,
-      ripgrep,
-      glow,
-      fd,
-      bat,
-      fzf,
-      stow,
-      go,
-      gnome-keyring
-    ]
+  ansible.builtin.package:
+    name:
+      - base-devel
+      - git
+      - git-delta
+      - zsh
+      - curl
+      - wget
+      - unzip
+      - ca-certificates
+      - gnupg
+      - htop
+      - tree
+      - jq
+      - ripgrep
+      - glow
+      - fd
+      - bat
+      - fzf
+      - stow
+      - go
+      - gnome-keyring
+      - dust
+      - procs
+      - ncdu
     state: present
   tags: [system, update, essentials]
 
 - name: Install terminal emulators
-  pacman:
-    name: [ alacritty, kitty, ghostty ]
+  ansible.builtin.package:
+    name:
+      - alacritty
+      - kitty
+      - ghostty
     state: present
   tags: [terminal]
 
 - name: Install shell, prompt, and multiplexer tools
-  pacman:
-    name: [ starship, atuin, zellij, tmux ]
+  ansible.builtin.package:
+    name:
+      - starship
+      - atuin
+      - zellij
+      - tmux
     state: present
   tags: [shell, terminal, productivity]
 
 - name: Install CLI productivity and developer tools
-  pacman:
-    name: [
-      eza,
-      tealdeer,
-      yq,
-      httpie,
-      github-cli,
-      lazygit,
-      lazydocker,
-      direnv,
-      sops,
-      age,
-      btop,
-      just
-    ]
+  ansible.builtin.package:
+    name:
+      - eza
+      - tealdeer
+      - yq
+      - httpie
+      - github-cli
+      - lazygit
+      - lazydocker
+      - direnv
+      - sops
+      - age
+      - btop
+      - just
+      - trash-cli
+      - watchexec
+      - hyperfine
+      - doggo
+      - choose
+      - progress
+      - navi
+      - dive
     state: present
   tags: [productivity, devtools]
 
 - name: Install desktop and window manager packages
-  pacman:
-    name: [
-      dunst,
-      feh,
-      pavucontrol,
-      flameshot,
-      arandr,
-      brightnessctl,
-      wireplumber,
-      waybar,
-      hyprland,
-      hyprpaper,
-      greetd,
-      i3blocks,
-      i3-wm,
-      i3status,
-      wofi,
-      rofi,
-      lynx,
-      swww
-    ]
+  ansible.builtin.package:
+    name:
+      - dunst
+      - feh
+      - pavucontrol
+      - flameshot
+      - arandr
+      - brightnessctl
+      - wireplumber
+      - waybar
+      - hyprland
+      - hyprpaper
+      - greetd
+      - i3blocks
+      - i3-wm
+      - i3status
+      - wofi
+      - rofi
+      - lynx
+      - swww
     state: present
   tags: [desktop, wm]
 
 - name: Install Docker packages
-  pacman:
-    name: [ docker, docker-compose ]
+  ansible.builtin.package:
+    name:
+      - docker
+      - docker-compose
     state: present
   tags: [docker]
 
 - name: Clone yay from AUR
-  git:
-    repo: "https://aur.archlinux.org/yay.git"
-    dest: "/tmp/yay"
-    update: yes
+  ansible.builtin.git:
+    repo: https://aur.archlinux.org/yay.git
+    dest: /tmp/yay
+    update: true
   tags: [yay]
-  ignore_errors: yes
 
 - name: Build and install yay
-  shell: |
-    cd /tmp/yay
-    makepkg -si --noconfirm
+  ansible.builtin.shell: makepkg -si --noconfirm
   args:
-    chdir: "/tmp/yay"
+    chdir: /tmp/yay
     creates: /usr/bin/yay
+  become: false
+  become_user: "{{ ansible_facts.user_id }}"
   tags: [yay]
 
+- name: Install AUR packages via yay
+  ansible.builtin.shell: yay -S --noconfirm --needed pre-commit act hadolint python-tmuxp
+  args:
+    creates: /usr/bin/pre-commit
+  become: false
+  tags: [aur, devtools]
+
 - name: Install Rust development tools
-  pacman:
-    name: [ rustup ]
+  ansible.builtin.package:
+    name:
+      - rustup
     state: present
   tags: [rust]
 
 - name: Install Python development tools
-  pacman:
-    name: [ python-pip, python-virtualenv, python-poetry ]
+  ansible.builtin.package:
+    name:
+      - python-pip
+      - python-virtualenv
+      - python-poetry
     state: present
   tags: [python]
 
 - name: Install Node.js development tools
-  pacman:
-    name: [ nodejs, npm, yarn ]
+  ansible.builtin.package:
+    name:
+      - nodejs
+      - npm
+      - yarn
     state: present
   tags: [nodejs]
 
-- name: Install cpp development tools
-  pacman:
-    name: [ cppcheck, lcov, gcovr, radare2, clang, clang-tools-extra, lldb, lld, cmake, ninja, meson, gdb, valgrind, ccache, pkgconf, bear ]
+- name: Install linting and QA tools
+  ansible.builtin.package:
+    name:
+      - shellcheck
+      - shfmt
+    state: present
+  tags: [linting, devtools]
+
+- name: Install C/C++ development tools
+  ansible.builtin.package:
+    name:
+      - cppcheck
+      - lcov
+      - gcovr
+      - radare2
+      - clang
+      - clang-tools-extra
+      - lldb
+      - lld
+      - cmake
+      - ninja
+      - meson
+      - gdb
+      - valgrind
+      - ccache
+      - pkgconf
+      - bear
     state: present
   tags: [cpp]
 
 - name: Install file managers
-  pacman:
-    name: [ ranger, dolphin, yazi ]
+  ansible.builtin.package:
+    name:
+      - ranger
+      - dolphin
+      - yazi
     state: present
   tags: [filemanager]
 
 - name: Install PDF utilities
-  pacman:
-    name: [ evince ]
+  ansible.builtin.package:
+    name:
+      - okular
     state: present
   tags: [pdf]
 
 - name: Add current user to docker group
-  user:
-    name: "{{ ansible_user_id }}"
+  ansible.builtin.user:
+    name: "{{ ansible_facts.user_id }}"
     groups: docker
-    append: yes
+    append: true
   tags: [docker]
+
+- name: Install Latex
+  ansible.builtin.package:
+    name:
+      - tectonic
+  tags: [latex]

@@ -1,1 +1,1 @@
-require("minimal")
+require("jalusw")

@@ -1,7 +1,18 @@
 return {
   {
     "MunifTanjim/nui.nvim",
-    lazy = true
+    lazy = true,
+  },
+  {
+    "stevearc/dressing.nvim",
+    event = "VeryLazy",
+    opts = {
+      input = { enabled = true },
+      select = {
+        enabled = true,
+        backend = { "telescope", "fzf", "builtin" },
+      },
+    },
   },
   {
     "folke/trouble.nvim",
@@ -82,6 +93,23 @@ return {
       { "<S-h>", "<cmd>BufferLineCyclePrev<CR>", desc = "Previous Buffer" },
       { "<S-q>", "<cmd>bd<CR>",                  desc = "Close Buffer" },
     }
+  },
+  {
+    "folke/edgy.nvim",
+    event = "VeryLazy",
+    opts = {
+      bottom = {
+        { ft = "trouble", title = "Trouble" },
+        { ft = "neotest-summary", title = "Neotest" },
+      },
+      right = {
+        { ft = "aerial", title = "Outline" },
+      },
+      options = { left = { size = 40 }, right = { size = 40 } },
+    },
+    keys = {
+      { "<leader>ue", function() require("edgy").toggle() end, desc = "Toggle Edgy" },
+    },
   },
   {
     "folke/flash.nvim",

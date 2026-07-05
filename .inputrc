@@ -1,0 +1,62 @@
+set editing-mode vi
+set keymap vi-insert
+set completion-ignore-case on
+set show-all-if-ambiguous on
+set menu-complete-display-prefix on
+set mark-symlinked-directories on
+set colored-stats on
+set colored-completion-prefix on
+set bell-style none
+set page-completions off
+set completion-query-items 200
+set input-meta on
+set output-meta on
+set convert-meta off
+set history-size 10000
+set revert-all-at-newline on
+set skip-completed-text on
+
+$include /etc/inputrc
+
+# Faster escape from insert mode: Ctrl+j sends Escape
+"\C-j": "\e"
+
+# Ctrl+l clears screen in both modes
+"\C-l": clear-screen
+
+# Insert mode key bindings
+$if mode=vi-insert
+  # Ctrl+p/n for history navigation
+  "\C-p": previous-history
+  "\C-n": next-history
+
+  # Ctrl+a/e for start/end of line
+  "\C-a": beginning-of-line
+  "\C-e": end-of-line
+
+  # Ctrl+left/right for word navigation
+  "\e[1;5D": backward-word
+  "\e[1;5C": forward-word
+
+  # Home/End
+  "\e[H": beginning-of-line
+  "\e[F": end-of-line
+
+  # Ctrl+w to delete word backward (like in bash)
+  "\C-w": unix-word-rubout
+$endif
+
+# Normal mode key bindings
+$if mode=vi-command
+  # Ctrl+l clears screen in normal mode too
+  "\C-l": clear-screen
+$endif
+
+# Common bindings (both modes)
+$if mode=emacs
+  # These also work in emacs mode if you ever switch
+  "\e[1;5D": backward-word
+  "\e[1;5C": forward-word
+  "\e[H": beginning-of-line
+  "\e[F": end-of-line
+$endif

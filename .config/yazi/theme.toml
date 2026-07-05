@@ -1,0 +1,59 @@
+# Yazi theme — Rosé Pine
+
+[manager]
+  syntect_theme = ""
+
+[status]
+  separator_open = ""
+  separator_close = ""
+
+[tab]
+  active_style = { fg = "#e0def4", bg = "#26233a" }
+  inactive_style = { fg = "#6e6a86", bg = "#1f1d2e" }
+
+[border]
+  style = { fg = "#403d52" }
+
+[regular]
+  odd_style = { fg = "#e0def4", bg = "" }
+  even_style = { fg = "#e0def4", bg = "" }
+
+[selected]
+  style = { fg = "#c4a7e7", bg = "#26233a" }
+
+[cut]
+  style = { fg = "#eb6f92", bg = "#26233a" }
+
+[hovered]
+  style = { fg = "#e0def4", bg = "#26233a" }
+
+[preview_hovered]
+  style = { fg = "#e0def4", bg = "#1f1d2e" }
+
+[find]
+  style = { fg = "#f6c177", bg = "" }
+
+[find_position]
+  style = { fg = "#e0def4", bg = "#403d52" }
+
+[help]
+  on_style = { fg = "#9ccfd8", bg = "" }
+  exec_style = { fg = "#e0def4", bg = "" }
+  desc_style = { fg = "#908caa", bg = "" }
+
+[input]
+  style = { fg = "#e0def4", bg = "#1f1d2e" }
+
+[select]
+  style = { fg = "#c4a7e7", bg = "" }
+
+[tasks]
+  total_progress_style = { fg = "#e0def4", bg = "#26233a" }
+  text_style = { fg = "#e0def4", bg = "" }
+  line_style = { fg = "#908caa", bg = "" }
+
+[which]
+  style = { fg = "#e0def4", bg = "#1f1d2e" }
+  col_style = { fg = "#c4a7e7", bg = "#26233a" }
+  name_style = { fg = "#e0def4", bg = "" }
+  desc_style = { fg = "#908caa", bg = "" }

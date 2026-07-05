@@ -1,0 +1,15 @@
+[include]
+  path = ~/.config/git/core.conf
+  path = ~/.config/git/aliases.conf
+  path = ~/.config/git/ui.conf
+  path = ~/.config/git/diff.conf
+  path = ~/.config/git/merge.conf
+  path = ~/.config/git/signing.conf
+  path = ~/.config/git/workflow.conf
+
+[includeIf "gitdir:~/repositories/work/"]
+  path = ~/.config/git/work.conf
+
+[user]
+  email = jsatrianiwijaya@gmail.com
+  name = jalusw

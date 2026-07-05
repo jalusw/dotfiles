@@ -178,16 +178,16 @@ bar {
   height 20
 
   colors {
-    background #111111
-    statusline #9e9e9e
-    separator  #fff
-    focused_workspace  #000000 #000000 #fdfdfd
-    inactive_workspace #353535 #353535 #b3b3b3
-    urgent_workspace   #111313 #111313 #b3b3b3
+    background #191724
+    statusline #e0def4
+    separator  #403d52
+    focused_workspace  #c4a7e7 #c4a7e7 #191724
+    inactive_workspace #26233a #26233a #908caa
+    urgent_workspace   #eb6f92 #eb6f92 #191724
 	}
 }
 
 # class           border  backgr  text  
-client.focused   #000000 #111111 #ffffff
-client.unfocused #333333 #333333 #ffffff
-client.urgent    #000000 #000000 #fdfdfd
+client.focused   #c4a7e7 #1f1d2e #e0def4
+client.unfocused #26233a #26233a #908caa
+client.urgent    #eb6f92 #eb6f92 #e0def4

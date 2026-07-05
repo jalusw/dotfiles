@@ -39,18 +39,19 @@ button:hover {
   padding: 8px;
   padding-left: 16px;
   padding-right: 16px;
-  background-color: #2a283e;
+  background: linear-gradient(#2a273f, #2a273f) padding-box,
+              linear-gradient(45deg, #eb6f92, #f6c177, #9ccfd8) border-box;
   border-radius: 8px;
-  color: #c4a7e7;
-  border: 2px solid #c4a7e7;
+  border: 2px solid transparent;
+  color: #e0def4;
 }
 
 #workspaces button {
   margin-right: 8px;
   border-radius: 8px;
-  background-color: #2a283e;
-  border: 2px solid #44415a;
-  color: #56526e;
+  background-color: #2a273f;
+  border: 2px solid #393552;
+  color: #6e6a86;
 }
 
 #workspaces button:first-child {
@@ -58,15 +59,15 @@ button:hover {
 }
 
 #workspaces button.active {
-  background-color: #31748f;
-  color: #f4ede8;
-  border: 2px solid #286983;
+  background: linear-gradient(45deg, #eb6f92, #f6c177, #9ccfd8);
+  color: #232136;
+  border: 2px solid transparent;
   opacity: 1;
 }
 
 #workspaces button.focused {
   background: rgba(0, 0, 0, 0.2);
-  color: #9730fd;
+  color: #c4a7e7;
 }
 
 #workspaces button.urgent {
@@ -74,12 +75,15 @@ button:hover {
 }
 
 #workspaces button:hover {
-  background: #56949f;
+  background: linear-gradient(45deg, #eb6f92, #f6c177, #9ccfd8);
+  color: #232136;
 }
 
 #window {
-  border: 2px solid #f6c177;
-  color: #ea9d34;
+  background: linear-gradient(#2a273f, #2a273f) padding-box,
+              linear-gradient(45deg, #f6c177, #ea9a97) border-box;
+  border: 2px solid transparent;
+  color: #f6c177;
 }
 
 #tray {
