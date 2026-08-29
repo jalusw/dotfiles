@@ -1,0 +1,57 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = "$directory$git_branch$git_state$git_status$cmd_duration$character"
+right_format = "$time"
+add_newline = true
+
+palette = "mono"
+
+[palettes.mono]
+surface  = "#0A0A12"    # bg0
+panel    = "#14141F"    # bg1
+elevated = "#1E1E2E"    # bg2
+text     = "#E8E6F0"    # fg0
+subtle   = "#9C9AB0"    # fg1
+border   = "#2A2A3D"
+
+# Monochromatic gray shades
+primary  = "#CCCCCC"
+light    = "#E0E0E0"
+lighter  = "#F0F0F0"
+dark     = "#888888"
+darker   = "#555555"
+muted    = "#333333"
+
+[character]
+success_symbol = "[❯](bold primary)"
+error_symbol   = "[❯](bold darker)"
+vimcmd_symbol  = "[❯](bold dark)"
+vimcmd_replace_symbol = "[❯](bold muted)"
+vimcmd_visual_symbol  = "[❯](bold light)"
+
+[directory]
+style = "bold primary"
+truncation_length = 3
+truncation_symbol = "/"
+
+[git_branch]
+format = "[$branch]($style)"
+style = "bold primary"
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style) )'
+style = "dark"
+
+[git_state]
+format = '\($state( $progress_current/$progress_total)\) '
+style = "subtle"
+
+[cmd_duration]
+min_time = 2000
+format = "in [$duration]($style) "
+style = "light"
+
+[time]
+disabled = false
+format = "[$time]($style) "
+style = "primary"

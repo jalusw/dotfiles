@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+set -euo pipefail
+# screen-off - OLED burn-in safe screen off while keeping system alive
+# Uses Hyprland DPMS (true pixel off on OLED) without suspend.
+# System stays alive: network, builds, downloads continue.
+# Move mouse / press key to wake (hypridle on-resume handles it).
+
+if ! command -v hyprctl >/dev/null 2>&1; then
+  echo "hyprctl not found (Hyprland required)" >&2
+  exit 1
+fi
+
+case "${1:-off}" in
+  off)
+    hyprctl dispatch dpms off >/dev/null
+    echo "DPMS off - OLED pixels off, system alive"
+    ;;
+  on)
+    hyprctl dispatch dpms on >/dev/null
+    echo "DPMS on"
+    ;;
+  toggle)
+    # check dpmsStatus of first monitor
+    if hyprctl monitors | grep -q "dpmsStatus: 1"; then
+      hyprctl dispatch dpms off >/dev/null
+      echo "DPMS off"
+    else
+      hyprctl dispatch dpms on >/dev/null
+      echo "DPMS on"
+    fi
+    ;;
+  lock-off)
+    # lock + off (best for OLED burn-in prevention)
+    loginctl lock-session 2>/dev/null || true
+    sleep 0.5
+    hyprctl dispatch dpms off >/dev/null
+    ;;
+  *)
+    echo "Usage: $(basename "$0") [off|on|toggle|lock-off]" >&2
+    exit 1
+    ;;
+esac

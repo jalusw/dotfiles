@@ -20,4 +20,5 @@ require("lazy").setup({
   spec = {
     { import = "jalusw.plugins" },
   },
+  colorscheme = { "nightfall" },
 })

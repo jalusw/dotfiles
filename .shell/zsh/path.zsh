@@ -6,6 +6,7 @@ export VOLTA="$HOME/.volta"
 export SCRIPTS="$HOME/scripts"
 export FZF_PATH="$HOME/.fzf/bin"
 export OPENCODE_PATH="$HOME/.opencode/bin"
+export ANDROID_HOME=$HOME/Android/Sdk
 
 typeset -U PATH path
 path=(
@@ -17,5 +18,6 @@ path=(
   $SCRIPTS
   $FZF_PATH
   $OPENCODE_PATH
+  $ANDROID_HOME/platform-tools
   $path
 )

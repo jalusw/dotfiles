@@ -6,39 +6,82 @@ family = "FiraCode Nerd Font Mono"
 style = "Regular"
 
 [window]
-opacity = 0.90
+opacity = 0.9
 padding.x = 8
 padding.y = 8
 
+# =====================================================================
+# Monochromatic black and white dark theme
+#   surfaces  bg0..bg2   (never saturated fills)
+#   primary   gray shades (#CCCCCC dominant)
+#   semantics all mapped to gray family
+# Flat ANSI slots use the primary gray shades.
+# Bright/dim rows are palette hexes lightened/darkened ~15%.
+# =====================================================================
+
 [colors.primary]
-background = "#191724"
-foreground = "#e0def4"
-
-[colors.normal]
-black   = "#21202e"
-red     = "#eb6f92"
-green   = "#31748f"
-yellow  = "#f6c177"
-blue    = "#9ccfd8"
-magenta = "#c4a7e7"
-cyan    = "#ebbcba"
-white   = "#e0def4"
-
-[colors.bright]
-black   = "#403d52"
-red     = "#eb6f92"
-green   = "#31748f"
-yellow  = "#f6c177"
-blue    = "#9ccfd8"
-magenta = "#c4a7e7"
-cyan    = "#ebbcba"
-white   = "#e0def4"
+background = "#0A0A12"   # bg0
+foreground = "#E8E6F0"   # fg0
+dim_foreground = "#9C9AB0"
+bright_foreground = "#E8E6F0"
 
 [colors.cursor]
-cursor = "#c4a7e7"
-text = "#191724"
+cursor = "#888888"       # dark gray — active/focus state
+text = "#0A0A12"
+
+[colors.vi_mode_cursor]
+cursor = "#CCCCCC"       # primary gray
+text = "#0A0A12"
 
 [colors.selection]
-background = "#403d52"
-text = "#e0def4"
+background = "#CCCCCC"
+text = "#0A0A12"
 
+# ANSI 16 — normal slots = monochromatic gray shades
+[colors.normal]
+black   = "#0A0A12"      # bg0
+red     = "#555555"      # darker gray (error)
+green   = "#E0E0E0"      # light gray (success)
+yellow  = "#CCCCCC"      # primary gray (warning)
+blue    = "#CCCCCC"      # primary gray
+magenta = "#888888"      # dark gray (focus)
+cyan    = "#E0E0E0"      # light gray
+white   = "#E8E6F0"      # fg0
+
+# ANSI 16 — bright (derived: +15% lighten of the matching normal slot)
+[colors.bright]
+black   = "#1C1C28"
+red     = "#666666"
+green   = "#DDDDDD"
+yellow  = "#AAAAAA"
+blue    = "#AAAAAA"
+magenta = "#999999"
+cyan    = "#EEEEEE"
+white   = "#EBEBF2"
+
+# ANSI 16 — dim (derived: -15% darken of the matching normal slot)
+[colors.dim]
+black   = "#08080E"
+red     = "#444444"
+green   = "#BBBBBB"
+yellow  = "#888888"
+blue    = "#888888"
+magenta = "#777777"
+cyan    = "#CCCCCC"
+white   = "#C5C4CC"
+
+# Extra 256-index mappings that resolve to palette hexes
+# (gives truecolor-palette tools like bat/git proper theme colors)
+[colors]
+indexed_colors = [
+  { index = 16, color = "#14141F" },   # bg1
+  { index = 17, color = "#1E1E2E" },   # bg2
+  { index = 18, color = "#2A2A3D" },   # border
+  { index = 19, color = "#9C9AB0" },   # fg1
+  { index = 20, color = "#333333" },   # muted
+  { index = 21, color = "#555555" },   # darker
+  { index = 22, color = "#888888" },   # dark
+  { index = 23, color = "#CCCCCC" },   # primary
+  { index = 24, color = "#E0E0E0" },   # light
+  { index = 25, color = "#F0F0F0" },   # lighter
+]

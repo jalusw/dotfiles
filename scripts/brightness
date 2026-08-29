@@ -1,0 +1,138 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# brightness - unified backlight control allowing absolute 0 and recovery
+# Fixes brightnessctl default --min-value=1 which blocks delta to 0.
+# Uses -n0 (min 0) and -e4 (exponential curve, perceptual linear) like hyprland.
+#
+# Usage:
+#   brightness up [STEP]      # increase, default 5%  (also: +5%)
+#   brightness down [STEP]    # decrease, default 5%  (also: -5%, 10%-)
+#   brightness set VALUE      # absolute: 0, 0%, 50%, 500 (allows 0)
+#   brightness get            # current raw value
+#   brightness max            # max raw value
+#   brightness info           # device info
+#   brightness save           # save state to tmp (for hypridle)
+#   brightness restore        # restore saved state
+#
+# Examples:
+#   brightness set 0          # turn off (absolute 0)
+#   brightness up             # from 0 -> 1 (32% perceptual with -e4) works
+#   brightness down 10%       # to 0 if low enough
+#   STEP=10% brightness up
+#   brightness set 50%
+
+has_brightnessctl() { command -v brightnessctl >/dev/null 2>&1; }
+
+run() {
+  # try without sudo, fallback to sudo
+  if "$@" 2>/dev/null; then return 0; fi
+  sudo "$@"
+}
+
+DEVICE_ARGS=()
+# Uncomment to target specific device class:
+# DEVICE_ARGS=(-c backlight)
+# Or device name: DEVICE_ARGS=(-d "intel_backlight")
+
+# Hyprland uses: brightnessctl -e4 -n0 set 5%+ / 5%-
+# Keep same defaults so keybinds and script are consistent.
+EXPONENT=4
+MIN=0
+STEP_DEFAULT="5%"
+
+usage() {
+  cat <<EOF
+Usage: $(basename "$0") {up|down|set|get|max|info|save|restore} [VALUE]
+  up [STEP]    increase by STEP (default $STEP_DEFAULT)  - uses -e$EXPONENT -n$MIN
+  down [STEP]  decrease by STEP (default $STEP_DEFAULT)
+  set VALUE    absolute value (e.g. 0, 0%, 50%, 500) - allows 0 via -n$MIN
+  get          current brightness
+  max          max brightness
+  info         device info
+  save         save state (brightnessctl --save)
+  restore      restore state (brightnessctl --restore)
+EOF
+  exit 1
+}
+
+if ! has_brightnessctl; then
+  echo "brightnessctl not found" >&2
+  exit 1
+fi
+
+cmd="${1:-}"
+arg="${2:-}"
+
+case "$cmd" in
+  up|+*%|*%+)
+    # allow: brightness up 10%  OR brightness +10% / 10%+
+    step="${arg:-$STEP_DEFAULT}"
+    if [[ "$cmd" == +*% ]] || [[ "$cmd" == *%+ ]]; then step="$cmd"; fi
+    # normalize to X%+ form: strip + - % then add %+
+    step="${step#+}"
+    step="${step%-}"
+    step="${step%\%}"
+    step="${step}%+"
+    run brightnessctl "${DEVICE_ARGS[@]}" -e"$EXPONENT" -n"$MIN" set "$step" >/dev/null
+    ;;
+
+  down|-*%|*%-)
+    step="${arg:-$STEP_DEFAULT}"
+    if [[ "$cmd" == -*% ]] || [[ "$cmd" == *%- ]]; then step="$cmd"; fi
+    # normalize to X%- form: strip + - % then add %-
+    step="${step#+}"
+    step="${step%-}"
+    step="${step%\%}"
+    step="${step}%-"
+    run brightnessctl "${DEVICE_ARGS[@]}" -e"$EXPONENT" -n"$MIN" set "$step" >/dev/null
+    ;;
+
+  set)
+    [[ -n "${arg:-}" ]] || usage
+    # absolute set must also use -n0 to allow 0
+    run brightnessctl "${DEVICE_ARGS[@]}" -n"$MIN" set "$arg" >/dev/null
+    ;;
+
+  get|g)
+    run brightnessctl "${DEVICE_ARGS[@]}" get
+    ;;
+
+  max|m)
+    run brightnessctl "${DEVICE_ARGS[@]}" max
+    ;;
+
+  info|i)
+    run brightnessctl "${DEVICE_ARGS[@]}" info
+    ;;
+
+  save)
+    # like hypridle: brightnessctl --save
+    run brightnessctl -q --save
+    ;;
+
+  restore)
+    run brightnessctl -q --restore
+    ;;
+
+  off|0|save0)
+    # convenience: save then set 0 (hypridle pattern)
+    run brightnessctl -q --save
+    run brightnessctl "${DEVICE_ARGS[@]}" -q -n"$MIN" set 0
+    ;;
+
+  ""|-h|--help|help)
+    usage
+    ;;
+
+  *)
+    # allow direct passthrough: brightness 0, brightness 50%, brightness 5%+, etc.
+    # if first arg looks like a value, treat as set
+    if [[ "$cmd" =~ ^[0-9]+%?$ ]] || [[ "$cmd" =~ ^[0-9]+\-?$ ]] || [[ "$cmd" =~ ^\+[0-9]+%?$ ]]; then
+      run brightnessctl "${DEVICE_ARGS[@]}" -n"$MIN" set "$cmd" >/dev/null
+      exit 0
+    fi
+    echo "Unknown command: $cmd" >&2
+    usage
+    ;;
+esac

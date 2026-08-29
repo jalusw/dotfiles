@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+dir="${WALLPAPERS_DIR:-$HOME/wallpapers}"
+
+[[ -d "$dir" ]] || { echo "Wallpaper directory not found: $dir" >&2; exit 1; }
+
+mapfile -t walls < <(find "$dir" -maxdepth 1 -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' -o -iname '*.gif' \) -printf '%f\n' | sort)
+
+(( ${#walls[@]} )) || { echo "No wallpapers found in $dir" >&2; exit 1; }
+
+choice="$({
+  for name in "${walls[@]}"; do
+    printf '%s\0icon\x1f%s\n' "$name" "$dir/$name"
+  done
+} | rofi -dmenu -i -p "Wallpaper" -config ~/.config/rofi/config.rasi \
+  -theme-str 'element-icon { size: 72px; }')"
+
+[[ -n "$choice" ]] || exit 0
+
+wall="$dir/$choice"
+
+swww img "$wall" --transition-type any
+
+command -v notify-send >/dev/null 2>&1 && notify-send "Wallpaper" "$choice" -i "$wall"
+echo "$wall"

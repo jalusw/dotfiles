@@ -1,5 +1,7 @@
-# Rosé Pine dircolors (xterm-256 approximations)
+# Monochromatic dircolors (xterm-256 nearest matches to the palette)
 # Apply with: eval "$(dircolors -b ~/.dircolors)"
+# Palette → 256 index: primary #CCCCCC→250, light #E0E0E0→254, lighter #F0F0F0→255,
+# dark #888888→102, darker #555555→59, muted #333333→236, fg0→254, fg1→250, border→236
 
 # Terminals
 TERM xterm-256color
@@ -11,122 +13,122 @@ TERM alacritty
 RESET 0
 NORMAL 00
 FILE 00
-DIR 01;38;5;67        # pine
-LINK 01;38;5;189       # iris
-MULTIHARDLINK 01;38;5;189
-FIFO 38;5;216          # gold
-SOCK 01;38;5;153       # foam
-DOOR 01;38;5;153
-BLK 01;38;5;215        # gold/orange
-CHR 01;38;5;217        # rose
-ORPHAN 01;38;5;211     # love
-MISSING 38;5;211
-EXEC 01;38;5;153       # foam (executables)
-SETUID 01;38;5;255;48;5;52
-SETGID 01;38;5;255;48;5;52
+DIR 01;38;5;250        # bold primary gray
+LINK 38;5;102         # dark gray
+MULTIHARDLINK 01;38;5;250
+FIFO 38;5;254         # light gray
+SOCK 38;5;102         # dark gray
+DOOR 01;38;5;59       # darker gray
+BLK 01;38;5;254
+CHR 01;38;5;254
+ORPHAN 01;38;5;59
+MISSING 38;5;59
+EXEC 01;38;5;255       # lighter gray
+SETUID 01;38;5;59
+SETGID 01;38;5;254
 CAPABILITY 01
-STICKY 01;38;5;254;48;5;60
-OTHER_WRITABLE 01;38;5;254;48;5;60
-STICKY_OTHER_WRITABLE 01;38;5;254;48;5;60
+STICKY 01;38;5;254
+OTHER_WRITABLE 01;38;5;254
+STICKY_OTHER_WRITABLE 01;38;5;254
 
-.tar 38;5;215
-.tgz 38;5;215
-.arc 38;5;215
-.arj 38;5;215
-.taz 38;5;215
-.lha 38;5;215
-.lz4 38;5;215
-.lzh 38;5;215
-.lz 38;5;215
-.lzo 38;5;215
-.xz 38;5;215
-.txz 38;5;215
-.t7z 38;5;215
-.zip 38;5;215
-.z 38;5;215
-.Z 38;5;215
-.dz 38;5;215
-.gz 38;5;215
-.bz2 38;5;215
-.bz 38;5;215
-.tbz 38;5;215
-.tbz2 38;5;215
-.tz 38;5;215
-.deb 38;5;215
-.rpm 38;5;215
-.jar 38;5;215
-.apk 38;5;215
-.pak 38;5;215
+.tar 38;5;254
+.tgz 38;5;254
+.arc 38;5;254
+.arj 38;5;254
+.taz 38;5;254
+.lha 38;5;254
+.lz4 38;5;254
+.lzh 38;5;254
+.lz 38;5;254
+.lzo 38;5;254
+.xz 38;5;254
+.txz 38;5;254
+.t7z 38;5;254
+.zip 38;5;254
+.z 38;5;254
+.Z 38;5;254
+.dz 38;5;254
+.gz 38;5;254
+.bz2 38;5;254
+.bz 38;5;254
+.tbz 38;5;254
+.tbz2 38;5;254
+.tz 38;5;254
+.deb 38;5;254
+.rpm 38;5;254
+.jar 38;5;254
+.apk 38;5;254
+.pak 38;5;254
 
 # Images
-.jpg 38;5;189
-.jpeg 38;5;189
-.png 38;5;189
-.gif 38;5;189
-.bmp 38;5;189
-.tiff 38;5;189
-.svg 38;5;189
-.webp 38;5;189
-.heic 38;5;189
+.jpg 38;5;102
+.jpeg 38;5;102
+.png 38;5;102
+.gif 38;5;102
+.bmp 38;5;102
+.tiff 38;5;102
+.svg 38;5;102
+.webp 38;5;102
+.heic 38;5;102
 
 # Audio
-.mp3 38;5;216
-.ogg 38;5;216
-.flac 38;5;216
-.wav 38;5;216
-.m4a 38;5;216
+.mp3 38;5;254
+.ogg 38;5;254
+.flac 38;5;254
+.wav 38;5;254
+.m4a 38;5;254
 
 # Video
-.mp4 38;5;211
-.mkv 38;5;211
-.mov 38;5;211
-.webm 38;5;211
-.avi 38;5;211
+.mp4 38;5;59
+.mkv 38;5;59
+.mov 38;5;59
+.webm 38;5;59
+.avi 38;5;59
 
 # Documents
-.pdf 01;38;5;189
-.md 38;5;146
-.txt 38;5;146
-.org 38;5;146
-.rst 38;5;146
-.tex 38;5;146
-.rtf 38;5;146
-.doc 38;5;146
-.docx 38;5;146
-.odt 38;5;146
-.xlsx 38;5;146
-.csv 38;5;146
+.pdf 01;38;5;250
+.md 38;5;250
+.txt 38;5;250
+.org 38;5;250
+.rst 38;5;250
+.tex 38;5;250
+.rtf 38;5;250
+.doc 38;5;250
+.docx 38;5;250
+.odt 38;5;250
+.xlsx 38;5;250
+.csv 38;5;250
 
 # Code/config
-.py 38;5;153
-.pyc 38;5;60
-.js 38;5;215
-.mjs 38;5;215
-.ts 38;5;215
-.tsx 38;5;215
-.jsx 38;5;215
-.go 38;5;153
-.rs 38;5;67
-.java 38;5;153
-.c 38;5;67
-.h 38;5;67
-.hpp 38;5;67
-.cpp 38;5;67
-.sh 38;5;153
-.zsh 38;5;153
-.bash 38;5;153
-.lua 38;5;189
-.json 38;5;146
-.yml 38;5;146
-.yaml 38;5;146
-.toml 38;5;146
-.ini 38;5;146
-.conf 38;5;146
-.lock 38;5;60
-.log 38;5;103
+.py 38;5;255
+.pyc 38;5;236
+.js 38;5;250
+.mjs 38;5;250
+.ts 38;5;250
+.tsx 38;5;250
+.jsx 38;5;250
+.go 38;5;250
+.rs 38;5;102
+.java 38;5;250
+.c 38;5;250
+.h 38;5;250
+.hpp 38;5;250
+.cpp 38;5;250
+.sh 38;5;255
+.zsh 38;5;255
+.bash 38;5;255
+.lua 38;5;102
+.json 38;5;250
+.yml 38;5;250
+.yaml 38;5;250
+.toml 38;5;250
+.ini 38;5;250
+.conf 38;5;250
+.lock 38;5;236
+.log 38;5;250
 
 # VCS
-.patch 38;5;215
-.diff 38;5;215
-.sig 38;5;103
-.asc 38;5;103
+.patch 38;5;102
+.diff 38;5;102
+.sig 38;5;102
+.asc 38;5;102

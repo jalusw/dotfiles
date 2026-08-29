@@ -1,0 +1,43 @@
+# Monochromatic gray theme for btop
+
+theme[main_bg] = "#0A0A12"
+theme[main_fg] = "#E8E6F0"
+theme[title] = "#CCCCCC"
+theme[hi_fg] = "#E8E6F0"
+theme[selected_bg] = "#1E1E2E"
+theme[selected_fg] = "#CCCCCC"
+theme[inactive_fg] = "#9C9AB0"
+theme[graph_line] = "#2A2A3D"
+
+# Graphs
+theme[graph_cpu] = "#CCCCCC"
+theme[graph_mem] = "#E0E0E0"
+theme[graph_net] = "#888888"
+theme[graph_proc] = "#F0F0F0"
+theme[graph_stat] = "#555555"
+theme[graph_core] = "#CCCCCC"
+
+# Process colors
+theme[proc_misc] = "#9C9AB0"
+theme[proc_cpu] = "#CCCCCC"
+theme[proc_mem] = "#E0E0E0"
+theme[proc_priority] = "#F0F0F0"
+theme[proc_running] = "#E0E0E0"
+theme[proc_root] = "#555555"
+
+# Temperature
+theme[temp_cold] = "#E0E0E0"
+theme[temp_warm] = "#CCCCCC"
+theme[temp_hot] = "#555555"
+
+# Battery
+theme[battery_high] = "#E0E0E0"
+theme[battery_medium] = "#CCCCCC"
+theme[battery_low] = "#555555"
+
+# Dividers and UI
+theme[div_line] = "#2A2A3D"
+theme[input_bg] = "#14141F"
+theme[input_fg] = "#E8E6F0"
+theme[box_bg] = "#0A0A12"
+theme[box_fg] = "#E8E6F0"

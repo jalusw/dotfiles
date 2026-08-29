@@ -28,14 +28,14 @@ export HISTSIZE=100000
 export HISTFILESIZE=100000
 export HISTCONTROL=ignoredups:ignorespace
 
-# Man page colors
-export LESS_TERMCAP_mb=$'\e[1;31m'
-export LESS_TERMCAP_md=$'\e[1;36m'
+# Man page colors (Monochromatic)
+export LESS_TERMCAP_mb=$'\e[1;38;2;255;46;154m'
+export LESS_TERMCAP_md=$'\e[1;38;2;30;232;255m'
 export LESS_TERMCAP_me=$'\e[0m'
 export LESS_TERMCAP_se=$'\e[0m'
-export LESS_TERMCAP_so=$'\e[1;44;33m'
+export LESS_TERMCAP_so=$'\e[1;48;2;30;232;255;38;2;10;10;18m'
 export LESS_TERMCAP_ue=$'\e[0m'
-export LESS_TERMCAP_us=$'\e[1;32m'
+export LESS_TERMCAP_us=$'\e[4;38;2;30;232;255m'
 
 # Vi mode
 set -o vi
@@ -58,7 +58,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv &>/dev/null && eval "$(pyenv init - bash)"
 
 # opencode
-export PATH=/home/jalusw/.opencode/bin:$PATH
+export PATH="$HOME/.opencode/bin:$PATH"
 
 # Shell integrations
 command -v starship &>/dev/null && eval "$(starship init bash)"

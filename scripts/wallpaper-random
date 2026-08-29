@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+dir="${WALLPAPERS_DIR:-$HOME/wallpapers}"
+
+[[ -d "$dir" ]] || { echo "Wallpaper directory not found: $dir" >&2; exit 1; }
+
+mapfile -d '' walls < <(find "$dir" -maxdepth 1 -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' -o -iname '*.gif' \) -print0)
+
+if (( ${#walls[@]} == 0 )); then
+  echo "No wallpapers found in $dir" >&2
+  exit 1
+fi
+
+wall="${walls[RANDOM % ${#walls[@]}]}"
+name="$(basename "$wall")"
+
+swww img "$wall" --transition-type any
+
+command -v notify-send >/dev/null 2>&1 && notify-send "Wallpaper" "$name" -i "$wall"
+echo "$wall"

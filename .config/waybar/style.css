@@ -39,19 +39,19 @@ button:hover {
   padding: 8px;
   padding-left: 16px;
   padding-right: 16px;
-  background: linear-gradient(#2a273f, #2a273f) padding-box,
-              linear-gradient(45deg, #eb6f92, #f6c177, #9ccfd8) border-box;
-  border-radius: 8px;
+  background: linear-gradient(#1E1E2E, #1E1E2E) padding-box,
+              linear-gradient(45deg, #1EE8FF, #2F6BFF) border-box;
+  border-radius: 0;
   border: 2px solid transparent;
-  color: #e0def4;
+  color: #E8E6F0;
 }
 
 #workspaces button {
   margin-right: 8px;
-  border-radius: 8px;
-  background-color: #2a273f;
-  border: 2px solid #393552;
-  color: #6e6a86;
+  border-radius: 0;
+  background-color: #1E1E2E;
+  border: 2px solid #2A2A3D;
+  color: #9C9AB0;
 }
 
 #workspaces button:first-child {
@@ -59,31 +59,32 @@ button:hover {
 }
 
 #workspaces button.active {
-  background: linear-gradient(45deg, #eb6f92, #f6c177, #9ccfd8);
-  color: #232136;
+  background: linear-gradient(45deg, #FF2E9A, #8B2FFF);
+  color: #0A0A12;
   border: 2px solid transparent;
   opacity: 1;
 }
 
 #workspaces button.focused {
-  background: rgba(0, 0, 0, 0.2);
-  color: #c4a7e7;
+  background: rgba(10, 10, 18, 0.6);
+  color: #1EE8FF;
 }
 
 #workspaces button.urgent {
-  background-color: #eb6f92;
+  background: linear-gradient(45deg, #FFD93D, #FF7A1A);
+  color: #0A0A12;
 }
 
 #workspaces button:hover {
-  background: linear-gradient(45deg, #eb6f92, #f6c177, #9ccfd8);
-  color: #232136;
+  background: linear-gradient(45deg, #1EE8FF, #2F6BFF);
+  color: #0A0A12;
 }
 
 #window {
-  background: linear-gradient(#2a273f, #2a273f) padding-box,
-              linear-gradient(45deg, #f6c177, #ea9a97) border-box;
+  background: linear-gradient(#1E1E2E, #1E1E2E) padding-box,
+              linear-gradient(45deg, #1EE8FF, #2F6BFF) border-box;
   border: 2px solid transparent;
-  color: #f6c177;
+  color: #E8E6F0;
 }
 
 #tray {

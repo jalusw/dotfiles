@@ -82,3 +82,10 @@ Icon?
 *openapi*.json
 
 ignore_*
+opencode.json
+.opencode/
+.config/opencode/
+next-env.d.ts
+.worktrees
+nixos/
+vagrant/

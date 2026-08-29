@@ -7,3 +7,4 @@ DOTFILES="${${(%):-%x}:A:h}"
 for module in path exports language plugins prompt history completion keybindings aliases functions ssh utils; do
   source "$DOTFILES/.shell/zsh/$module.zsh"
 done
+export PATH="$HOME/.local/bin:$PATH"

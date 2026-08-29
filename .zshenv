@@ -8,4 +8,4 @@ export BROWSER="firefox"
 export TERMINAL="kitty"
 export LANG="en_US.UTF-8"
 export COLORTERM=truecolor
-export BAT_THEME="Rosé Pine"
+export BAT_THEME="rose-pine"

@@ -27,7 +27,11 @@ vim.o.foldcolumn = '1'
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.o.swapfile = false
 
+vim.opt.showtabline = 0
+vim.opt.laststatus = 0
 vim.o.termguicolors = true
 vim.o.wildignore = "*.o,*.obj,*.pyc,.git,.hg,*.swp,*.DS_Store"

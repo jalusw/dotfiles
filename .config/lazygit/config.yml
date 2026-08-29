@@ -1,30 +1,28 @@
-# Lazygit config — Rosé Pine
+# Lazygit config — Monochromatic
 gui:
   theme:
     lightTheme: false
     activeBorderColor:
-      - "#c4a7e7"
+      - "#CCCCCC"
       - bold
     inactiveBorderColor:
-      - "#403d52"
+      - "#2A2A3D"
     optionsTextColor:
-      - "#9ccfd8"
+      - "#9C9AB0"
     selectedLineBgColor:
-      - "#26233a"
+      - "#1E1E2E"
     cherryPickedCommitBgColor:
-      - "#31748f"
+      - "#999999"
     cherryPickedCommitFgColor:
-      - "#e0def4"
+      - "#0A0A12"
     unstagedChangesColor:
-      - "#eb6f92"
+      - "#F0F0F0"
     defaultFgColor:
-      - "#e0def4"
+      - "#E8E6F0"
     searchingActiveBorderColor:
-      - "#f6c177"
-
+      - "#888888"
   authorColors:
-    "*": "#c4a7e7"
-
+    "*": "#9C9AB0"
   nerdFontsVersion: "3"
   showFileTree: true
   showBottomLine: false
@@ -34,18 +32,16 @@ gui:
   skipNoStagedFilesWarning: true
   showIcons: true
   startMaximised: false
-
 git:
-  paging:
-    colorArg: always
-    pager: delta --dark --paging=never
+  pagers:
+    - colorArg: always
+      pager: delta --dark --paging=never
   branchLogCmd: "git log --graph --oneline --abbrev-commit --decorate --all"
-  allBranchesLogCmd: "git log --graph --oneline --abbrev-commit --decorate --all"
   overrideGpg: true
   parseEmoji: true
-
+  allBranchesLogCmds:
+    - git log --graph --oneline --abbrev-commit --decorate --all
 os:
   editPreset: "nvim"
-
 notifications:
   command: "dunstify"

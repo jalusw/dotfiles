@@ -7,9 +7,9 @@
   path = ~/.config/git/signing.conf
   path = ~/.config/git/workflow.conf
 
-[includeIf "gitdir:~/repositories/work/"]
-  path = ~/.config/git/work.conf
-
 [user]
   email = jsatrianiwijaya@gmail.com
   name = jalusw
+
+[includeIf "gitdir:~/repositories/work/**"]
+  path = ~/.config/git/work.conf

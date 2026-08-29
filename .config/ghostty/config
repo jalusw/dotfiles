@@ -1,0 +1,27 @@
+font-family = FiraCode Nerd Font
+font-size = 13
+
+# Monochromatic
+background = #0A0A12
+foreground = #E8E6F0
+background-opacity = 0.9
+cursor-color = #888888
+cursor-text = #0A0A12
+selection-background = #CCCCCC
+selection-foreground = #0A0A12
+palette = 0=#0A0A12
+palette = 1=#555555
+palette = 2=#E0E0E0
+palette = 3=#CCCCCC
+palette = 4=#CCCCCC
+palette = 5=#888888
+palette = 6=#E0E0E0
+palette = 7=#E8E6F0
+palette = 8=#1C1C28
+palette = 9=#666666
+palette = 10=#DDDDDD
+palette = 11=#AAAAAA
+palette = 12=#AAAAAA
+palette = 13=#999999
+palette = 14=#EEEEEE
+palette = 15=#EBEBF2

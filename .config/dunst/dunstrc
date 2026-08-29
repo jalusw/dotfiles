@@ -19,14 +19,14 @@
   horizontal_padding = 16
   text_icon_padding = 8
   frame_width = 2
-  frame_color = "#403d52"
+  frame_color = "#2A2A3D"
   gap_size = 8
   separator_color = frame
   sort = yes
   font = "FiraCode Nerd Font Mono 10"
   line_height = 4
   markup = full
-  format = "<b>%s</b>\\n%b"
+  format = "<b>%s</b>\n%b"
   alignment = left
   vertical_alignment = center
   show_age_threshold = 60
@@ -48,20 +48,20 @@
   mouse_right_click = close
 
 [urgency_low]
-  background = "#1f1d2e"
-  foreground = "#908caa"
+  background = "#14141F"
+  foreground = "#9C9AB0"
   timeout = 5
-  highlight = "#9ccfd8"
+  highlight = "#1EE8FF"
 
 [urgency_normal]
-  background = "#191724"
-  foreground = "#e0def4"
+  background = "#0A0A12"
+  foreground = "#E8E6F0"
   timeout = 8
-  highlight = "#c4a7e7"
+  highlight = "#1EE8FF"
 
 [urgency_critical]
-  background = "#eb6f92"
-  foreground = "#191724"
+  background = "#FF4E85"
+  foreground = "#0A0A12"
   timeout = 0
-  highlight = "#f6c177"
-  frame_color = "#eb6f92"
+  highlight = "#FFD93D"
+  frame_color = "#FF4E85"
